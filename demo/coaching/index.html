@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Momentum | Coaching &amp; Seminar Signup Demo</title>
+<meta name="description" content="A live coaching, personal training, and seminar registration demo built by Khairasa Studio. Pick a program and session, and it lands in the dashboard." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="../../assets/img/favicon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0e0f12; --panel:#16181d; --card:#1b1e25; --card-2:#22262e;
+    --lime:#c8f25a; --lime-dim:#a9d437; --ink:#f2f4ef; --muted:#9aa0aa;
+    --line:#2b2f38; --ok:#8be08f;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.02em}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding-inline:clamp(18px,5vw,36px)}
+
+  .demobar{background:#3158A7;color:#fff;font-size:.82rem;text-align:center;padding:9px 16px;font-weight:600}
+  .demobar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .brand{font-family:"Space Grotesk";font-weight:700;font-size:1.4rem;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--lime);box-shadow:0 0 14px var(--lime)}
+  .btn-lime{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--lime);color:#16200a;font-weight:700;padding:13px 24px;border-radius:10px;font-size:.96rem;border:0;cursor:pointer;transition:.2s}
+  .btn-lime:hover{background:#d6ff6e;transform:translateY(-2px);box-shadow:0 10px 26px rgba(200,242,90,.22)}
+  .topnav .btn-lime{padding:10px 20px;font-size:.86rem}
+
+  /* hero */
+  .hero{position:relative;min-height:74vh;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero__bg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,15,18,.95),rgba(14,15,18,.55)),url("../../assets/img/demo/coaching/hero.jpg") center/cover}
+  .hero__in{position:relative;padding:70px 0}
+  .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(200,242,90,.12);color:var(--lime);border:1px solid rgba(200,242,90,.3);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(2.6rem,7vw,5rem);max-width:14ch}
+  .hero h1 .lime{color:var(--lime)}
+  .hero p{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:18px 0 30px}
+  .hero__cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero__cta small{color:var(--muted);font-size:.86rem}
+  .ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);color:var(--ink);padding:13px 22px;border-radius:10px;font-weight:600;transition:.2s}
+  .ghost:hover{border-color:var(--lime);color:var(--lime)}
+
+  /* programs */
+  .programs{padding:clamp(56px,8vw,96px) 0}
+  .sec-head{max-width:640px;margin:0 auto clamp(34px,5vw,52px);text-align:center}
+  .sec-head .tag{margin-bottom:14px}
+  .sec-head h2{font-size:clamp(2rem,4.6vw,3rem)}
+  .sec-head p{color:var(--muted);margin-top:10px}
+  .prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .prog{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s}
+  .prog:hover{transform:translateY(-5px);border-color:rgba(200,242,90,.4)}
+  .prog img{width:100%;aspect-ratio:16/11;object-fit:cover;filter:grayscale(.2)}
+  .prog__body{padding:22px}
+  .prog__body h3{font-size:1.35rem;margin-bottom:4px}
+  .prog__price{color:var(--lime);font-family:"Space Grotesk";font-weight:600;margin-bottom:8px}
+  .prog__body p{color:var(--muted);font-size:.92rem}
+
+  /* registration */
+  .reg{padding:clamp(40px,7vw,90px) 0;background:var(--panel);border-top:1px solid var(--line)}
+  .card{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(26px,4vw,40px)}
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+  .field label{font-size:.82rem;font-weight:700;color:var(--ink)}
+  .field input,.field select,.field textarea{background:var(--card-2);border:1px solid var(--line);border-radius:11px;padding:13px 14px;color:var(--ink);font:inherit;font-size:.96rem;transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--lime);box-shadow:0 0 0 3px rgba(200,242,90,.16)}
+  .field textarea{resize:vertical;min-height:70px}
+  .field input::placeholder,.field textarea::placeholder{color:#6b727c}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .slots{display:flex;flex-wrap:wrap;gap:8px}
+  .slot{padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;background:var(--card-2);color:var(--ink);cursor:pointer;transition:.15s}
+  .slot:hover{border-color:var(--lime)}
+  .slot.is-active{background:var(--lime);color:#16200a;border-color:var(--lime);font-weight:700}
+  .reg .btn-lime{width:100%;margin-top:6px}
+  .err{color:#ff8f7a;font-size:.84rem;margin-top:8px;min-height:1.1em}
+
+  /* confirmation */
+  .confirm{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--ok);border-radius:20px;padding:clamp(26px,4vw,40px);text-align:center}
+  .confirm .check{width:64px;height:64px;border-radius:50%;background:rgba(139,224,143,.14);color:var(--ok);display:grid;place-items:center;margin:0 auto 16px;font-size:2rem}
+  .confirm h2{font-size:1.9rem}
+  .confirm .ref{font-family:"Space Grotesk";font-size:1.5rem;color:var(--lime);letter-spacing:.05em;margin:6px 0 16px}
+  .summary{text-align:left;background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+  .summary div{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .summary div:last-child{border-bottom:0}
+  .summary span:first-child{color:var(--muted)}
+  .summary span:last-child{font-weight:700;text-align:right}
+  .dash-note{font-size:.86rem;color:var(--muted);background:var(--card-2);border:1px dashed var(--line);border-radius:12px;padding:14px 16px}
+  .dash-note b{color:var(--lime)}
+  .linkback{display:inline-block;margin-top:20px;color:var(--lime);font-weight:700;border-bottom:1px solid var(--lime);padding-bottom:2px}
+
+  footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+  footer a{color:var(--lime);text-decoration:underline;text-underline-offset:2px}
+  .hidden{display:none}
+
+  @media(max-width:860px){.prog-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="demobar">Live demo built by <a href="../../">Khairasa Studio</a>. Fictional coaching brand, your signup stays on this page (a real build saves it to the dashboard).</div>
+
+<header class="wrap topnav">
+  <div class="brand"><span class="dot" aria-hidden="true"></span> MOMENTUM</div>
+  <button class="btn-lime" onclick="document.getElementById('reg').scrollIntoView({behavior:'smooth'})">Register</button>
+</header>
+
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__in wrap">
+    <span class="tag">Coaching &middot; Training &middot; Seminars</span>
+    <h1>Train with <span class="lime">intent.</span></h1>
+    <p>One-on-one coaching, group training, and live seminars to help you level up. Pick a program and lock your spot in under a minute.</p>
+    <div class="hero__cta">
+      <button class="btn-lime" onclick="document.getElementById('reg').scrollIntoView({behavior:'smooth'})">Reserve your spot</button>
+      <a class="ghost" href="#programs">See programs</a>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Programs</span>
+      <h2>Pick your path</h2>
+      <p>From personal coaching to a packed seminar hall. Prices are starting estimates for the demo.</p>
+    </div>
+    <div class="prog-grid">
+      <article class="prog">
+        <img src="../../assets/img/demo/coaching/p1.jpg" alt="One-on-one coaching" loading="lazy" />
+        <div class="prog__body"><h3>1-on-1 Coaching</h3><p class="prog__price">from Rp 350k / session</p><p>Personalized training and accountability, built around your goal.</p></div>
+      </article>
+      <article class="prog">
+        <img src="../../assets/img/demo/coaching/p2.jpg" alt="Group training" loading="lazy" />
+        <div class="prog__body"><h3>Group Training</h3><p class="prog__price">from Rp 150k / class</p><p>High-energy small-group sessions. Push harder, together.</p></div>
+      </article>
+      <article class="prog">
+        <img src="../../assets/img/demo/coaching/p3.jpg" alt="Seminar and masterclass" loading="lazy" />
+        <div class="prog__body"><h3>Seminar / Masterclass</h3><p class="prog__price">from Rp 250k / seat</p><p>Live workshops on training, mindset, and performance.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="reg" id="reg">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Registration</span>
+      <h2>Reserve your spot</h2>
+      <p>Choose a program and a session that works for you.</p>
+    </div>
+
+    <form class="card" id="regForm" novalidate>
+      <div class="grid2">
+        <div class="field">
+          <label for="program">Program</label>
+          <select id="program" required>
+            <option value="">Select a program</option>
+            <option>1-on-1 Coaching</option>
+            <option>Group Training</option>
+            <option>Seminar / Masterclass</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Preferred date</label>
+          <input type="date" id="date" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Session time</label>
+        <div class="slots" id="slots">
+          <button type="button" class="slot">06:00</button>
+          <button type="button" class="slot">08:00</button>
+          <button type="button" class="slot">10:00</button>
+          <button type="button" class="slot">16:00</button>
+          <button type="button" class="slot">18:00</button>
+          <button type="button" class="slot">19:30</button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" placeholder="08xx xxxx xxxx" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@email.com" required />
+      </div>
+
+      <div class="field">
+        <label for="goal">Your goal (optional)</label>
+        <textarea id="goal" placeholder="e.g. build strength, lose weight, prep for an event..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-lime">Confirm registration</button>
+      <p class="err" id="err"></p>
+    </form>
+
+    <div class="confirm hidden" id="confirm">
+      <div class="check" aria-hidden="true">&#10003;</div>
+      <h2>You are in</h2>
+      <p class="ref" id="ref">MOM-0000</p>
+      <div class="summary" id="summary"></div>
+      <p class="dash-note">In a real build, this registration drops straight into the coach's <b>admin dashboard</b> to confirm and schedule. Nothing leaves this page in the demo.</p>
+      <a class="linkback" href="../../">&larr; Back to Khairasa Studio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  Demo only, no real registrations. Designed &amp; built by <a href="../../">Khairasa Studio</a>.
+</footer>
+
+<script>
+(function(){
+  var form=document.getElementById("regForm"),
+      confirm=document.getElementById("confirm"),
+      err=document.getElementById("err"),
+      dateEl=document.getElementById("date"),
+      slots=document.getElementById("slots"),
+      chosenTime="";
+  var t=new Date(); var iso=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
+  dateEl.min=iso; dateEl.value=iso;
+  slots.addEventListener("click",function(e){
+    var b=e.target.closest(".slot"); if(!b) return;
+    slots.querySelectorAll(".slot").forEach(function(s){s.classList.remove("is-active");});
+    b.classList.add("is-active"); chosenTime=b.textContent;
+  });
+  function fmtDate(v){ try{return new Date(v+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"long",year:"numeric"});}catch(e){return v;} }
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var program=document.getElementById("program").value,
+        name=document.getElementById("name").value.trim(),
+        phone=document.getElementById("phone").value.trim(),
+        email=document.getElementById("email").value.trim();
+    if(!program||!dateEl.value||!chosenTime||!name||!phone||!email){
+      err.textContent="Please choose a program, date, time, and fill in name, phone, and email.";
+      return;
+    }
+    err.textContent="";
+    var ref="MOM-"+Math.floor(1000+Math.random()*9000);
+    document.getElementById("ref").textContent=ref;
+    var rows=[["Program",program],["Date",fmtDate(dateEl.value)],["Time",chosenTime],["Name",name],["Phone",phone],["Email",email]];
+    document.getElementById("summary").innerHTML=rows.map(function(r){return "<div><span>"+r[0]+"</span><span>"+r[1]+"</span></div>";}).join("");
+    form.classList.add("hidden");
+    confirm.classList.remove("hidden");
+    confirm.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+})();
+</script>
+</body>
+</html>
