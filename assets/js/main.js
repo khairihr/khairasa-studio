@@ -39,13 +39,13 @@
       nav.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
-      menu.hidden = true;
+      menu.setAttribute("aria-hidden", "true");
     }
     function open() {
       nav.classList.add("is-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close menu");
-      menu.hidden = false;
+      menu.setAttribute("aria-hidden", "false");
     }
 
     toggle.addEventListener("click", function () {
