@@ -367,6 +367,11 @@ section { padding-block: clamp(64px, 9vw, 130px); }
 .wa-form__err { color: var(--red); font-size: .84rem; margin-top: 8px; min-height: 1.1em; text-align: center; }
 .wa-form__alt { text-align: center; font-size: .9rem; color: var(--muted); margin-top: 4px; }
 .wa-form__alt a { color: var(--blue); font-weight: 600; }
+.wa-form__ok { text-align: center; padding: 10px 0; }
+.wa-form__okcheck { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(37,211,102,.14); color: var(--wa-dark); font-size: 1.7rem; font-weight: 800; margin: 0 auto 14px; }
+.wa-form__ok h3 { font-size: 1.4rem; margin-bottom: 8px; }
+.wa-form__ok p { color: var(--muted); }
+.wa-form__ok a { color: var(--blue); font-weight: 700; }
 @media (max-width: 560px) { .wa-form__row { grid-template-columns: 1fr; } }
 
 /* footer */

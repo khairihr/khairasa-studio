@@ -5,6 +5,9 @@
   "use strict";
 
   var WA_BASE = "https://wa.me/6285121525015";
+  // Free access key from web3forms.com (use Khairasagroup@gmail.com). Safe to be public.
+  // Until this is set, the forms fall back to opening WhatsApp with the details.
+  var WEB3_KEY = "a7831c74-479c-4ded-ac41-53394a1a6041";
 
   /* ---- 1. WhatsApp links: build pre-filled href from data-wa-text ---- */
   function wireWhatsApp() {
@@ -141,26 +144,45 @@
     });
   }
 
-  /* ---- 8. Guided forms: build a clear WhatsApp message from the fields ---- */
+  /* ---- 8. Guided forms: save the lead via Web3Forms, with a WhatsApp fallback ---- */
   function wireForms() {
     var forms = document.querySelectorAll(".wa-form");
     forms.forEach(function (form) {
       var err = form.querySelector(".wa-form__err");
+      var btn = form.querySelector("button[type=submit]");
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+        var hp = form.querySelector("input[name=botcheck]");
+        if (hp && hp.checked) return; // honeypot: bot filled it
         var fields = form.querySelectorAll("[data-label]");
-        var lines = [], missing = false;
+        var data = {}, lines = [], missing = false;
         fields.forEach(function (f) {
           var val = (f.value || "").trim();
           if (f.hasAttribute("data-required") && !val) { missing = true; f.style.borderColor = "var(--red)"; }
           else { f.style.borderColor = ""; }
-          if (val) lines.push(f.getAttribute("data-label") + ": " + val);
+          if (val) { data[f.getAttribute("data-label")] = val; lines.push(f.getAttribute("data-label") + ": " + val); }
         });
         if (missing) { if (err) err.textContent = "Please fill in the required fields."; return; }
         if (err) err.textContent = "";
-        var intro = form.getAttribute("data-intro") || "Hi Khairasa Studio,";
-        var msg = intro + "\n\n" + lines.join("\n");
-        window.open(WA_BASE + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+        var intro = form.getAttribute("data-intro") || "New enquiry from the Khairasa website.";
+        var waUrl = WA_BASE + "?text=" + encodeURIComponent(intro + "\n\n" + lines.join("\n"));
+
+        // Key not set yet: fall back to the WhatsApp hand-off so nothing breaks.
+        if (WEB3_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") { window.open(waUrl, "_blank", "noopener"); return; }
+
+        var payload = { access_key: WEB3_KEY, subject: "New lead: " + (data.Name || "website enquiry"), from_name: "Khairasa Studio website", message: intro + "\n\n" + lines.join("\n") };
+        for (var k in data) { if (data.hasOwnProperty(k)) payload[k] = data[k]; }
+        if (btn) { btn.disabled = true; btn.dataset.t = btn.textContent; btn.textContent = "Sending..."; }
+        fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res || !res.success) throw new Error("fail");
+            form.innerHTML = '<div class="wa-form__ok"><span class="wa-form__okcheck" aria-hidden="true">✓</span><h3>Thank you, we have your details.</h3><p>We will review and reach out soon. Prefer to talk now? <a href="' + waUrl + '" target="_blank" rel="noopener">Message us on WhatsApp &rarr;</a></p></div>';
+          })
+          .catch(function () {
+            if (btn) { btn.disabled = false; btn.textContent = btn.dataset.t || "Send my details"; }
+            if (err) err.innerHTML = 'Could not send right now. Please <a href="' + waUrl + '" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;">message us on WhatsApp</a> instead.';
+          });
       });
     });
   }
