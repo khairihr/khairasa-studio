@@ -59,8 +59,8 @@ Everything works as-is, but these are the spots only you can finalize:
 2. **WhatsApp number** is Zalza's `+62 851-2152-5015` (`wa.me/6285121525015`).
    If it ever changes, update `WA_BASE` in `assets/js/main.js` and the `href`s in `index.html`.
 
-3. **Instagram and TikTok links** in the footer are placeholders (`#`).
-   Add the real URLs (search `data-social` in `index.html`).
+3. **Instagram and TikTok** are linked in the footer (all pages) and the wedding gallery:
+   instagram.com/khairasastudio and tiktok.com/@khairasa.group.
 
 4. **Wedding reel photos** in `assets/img/wedding/` are royalty-free **stock used only as mood / illustration**.
    They are never labelled as your own client work, and the copy says real samples are sent on WhatsApp.
