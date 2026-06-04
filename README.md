@@ -82,26 +82,35 @@ Everything works as-is, but these are the spots only you can finalize:
 
 This is a static site, so any static host works with zero config.
 
-- **Netlify**: drag the folder onto app.netlify.com, or connect the GitHub repo. `netlify.toml` is included.
+- **Netlify Drop (fastest, no setup)**: open app.netlify.com/drop and drag this whole folder in. You get a live public URL in seconds. Best for a quick preview before the custom domain.
+- **Netlify (from Git)**: connect the GitHub repo. `netlify.toml` is included.
 - **Vercel**: import the repo, framework preset = "Other", output dir = project root.
 - **Cloudflare Pages**: connect the repo, build command empty, output dir = `/`.
 - **GitHub Pages**: push to GitHub, then Settings to Pages to deploy from the `main` branch root.
 
 ---
 
-## Put it on GitHub
+## Put it on GitHub + GitHub Pages
 
 A brand-new, separate repo is the right move (this is not part of any client project).
-A local git repo is already initialized here with a first commit. To publish it:
+A local git repo is already initialized with commits. To publish and auto-deploy:
 
 ```bash
-# create an empty repo on github.com first (no README), then:
-git remote add origin https://github.com/<your-username>/khairasa-studio.git
+# 1. Create an EMPTY repo named "khairasa-studio" at https://github.com/new (no README, no license)
+# 2. From this folder, run (uses your existing GitHub login):
+git remote add origin https://github.com/khairihr/khairasa-studio.git
 git branch -M main
 git push -u origin main
 ```
 
-After that, connect the repo to Netlify / Vercel / Pages and every push auto-deploys.
+Then enable Pages once: repo **Settings > Pages > Source: "GitHub Actions"**.
+The included workflow (`.github/workflows/deploy.yml`) redeploys the site on every push.
+Live URL: `https://khairihr.github.io/khairasa-studio/`
+
+### When the custom domain (khairasa.studio) is ready
+The base URL is currently the github.io address. Update it in: `index.html`, `about.html`,
+`service.html` (canonical + og:url + og:image + twitter:image), plus `robots.txt` and `sitemap.xml`,
+then set it under Settings > Pages > Custom domain.
 
 ---
 

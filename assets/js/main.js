@@ -110,11 +110,43 @@
     });
   }
 
+  /* ---- 7. Smooth FAQ accordion (animate <details> open/close) ---- */
+  function wireFaq() {
+    var items = document.querySelectorAll(".faq__item");
+    if (!items.length) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    items.forEach(function (item) {
+      var summary = item.querySelector("summary");
+      var panel = item.querySelector(".faq__a");
+      if (!summary || !panel) return;
+      summary.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (reduce) { item.open = !item.open; return; }
+        if (item.open) {
+          panel.style.height = panel.scrollHeight + "px";
+          void panel.offsetHeight; // reflow
+          panel.style.height = "0px";
+          var closeDone = function () { item.open = false; panel.style.height = ""; panel.removeEventListener("transitionend", closeDone); };
+          panel.addEventListener("transitionend", closeDone);
+        } else {
+          item.open = true;
+          var target = panel.scrollHeight;
+          panel.style.height = "0px";
+          void panel.offsetHeight; // reflow
+          panel.style.height = target + "px";
+          var openDone = function () { panel.style.height = ""; panel.removeEventListener("transitionend", openDone); };
+          panel.addEventListener("transitionend", openDone);
+        }
+      });
+    });
+  }
+
   function init() {
     wireWhatsApp();
     wireNavScroll();
     wireMobileMenu();
     wireReveal();
+    wireFaq();
     buildContribGraph();
     wireMisc();
   }

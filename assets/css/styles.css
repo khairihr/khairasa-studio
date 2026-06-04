@@ -222,11 +222,11 @@ section { padding-block: clamp(64px, 9vw, 130px); }
 .reels { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2.5vw, 26px); margin-top: clamp(44px, 6vw, 70px); }
 .phone { display: flex; flex-direction: column; align-items: center; }
 .phone__screen { position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; border: 5px solid #15151a; background: #ddd; box-shadow: var(--sh); }
-.phone__screen img { width: 100%; height: 100%; object-fit: cover; }
+.phone__screen img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
+.phone:hover .phone__screen img { transform: scale(1.06); }
+.phone__screen::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(transparent 52%, rgba(15,15,20,.30)); }
 .phone__screen::after { content: ""; position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 34%; height: 7px; border-radius: 0 0 8px 8px; background: #15151a; }
-.phone__play { position: absolute; inset: 0; margin: auto; width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.86); box-shadow: 0 6px 18px rgba(0,0,0,.25); transition: transform .25s var(--ease), background .25s; }
-.phone__play::before { content: ""; position: absolute; inset: 0; margin: auto; width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent var(--blue); transform: translateX(2px); }
-.phone:hover .phone__play { transform: scale(1.1); background: #fff; }
+/* reel frames are still images (illustrative). real reels are sent on WhatsApp. */
 .phone figcaption { margin-top: 14px; font-weight: 600; font-size: .92rem; color: var(--ink-soft); }
 .phone--blush .phone__screen { border-color: #5a3f3a; }
 .phone--gold .phone__screen { border-color: #6b5a2e; }
@@ -343,8 +343,8 @@ section { padding-block: clamp(64px, 9vw, 130px); }
 .faq__item summary::-webkit-details-marker { display: none; }
 .faq__item summary::after { content: "+"; font-family: "Fraunces", serif; font-size: 1.6rem; font-weight: 400; color: var(--blue); transition: transform .3s var(--ease); flex: none; }
 .faq__item[open] summary::after { transform: rotate(45deg); }
-.faq__a { padding: 0 0 20px; color: var(--muted); font-size: .98rem; }
-.faq__a p { max-width: 64ch; }
+.faq__a { padding: 0; overflow: hidden; transition: height .42s var(--ease); color: var(--muted); font-size: .98rem; }
+.faq__a p { max-width: 64ch; padding-bottom: 22px; }
 
 /* closing */
 .closing { background: linear-gradient(180deg, var(--panel), var(--bg)); text-align: center; }
@@ -376,7 +376,7 @@ section { padding-block: clamp(64px, 9vw, 130px); }
 .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .door, .feature, .niche, .card-demo, .card-work { transition: none; }
+  .btn, .door, .feature, .niche, .card-demo, .card-work, .faq__a, .phone__screen img { transition: none; }
 }
 
 /* =========================================================

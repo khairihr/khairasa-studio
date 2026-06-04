@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://khairasa.studio/sitemap.xml
+# Demo pages are intentionally excluded from indexing (set via meta noindex too)
+Disallow: /demo/
+
+Sitemap: https://khairihr.github.io/khairasa-studio/sitemap.xml
