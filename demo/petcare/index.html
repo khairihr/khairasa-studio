@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Petala Grooming &amp; Spa | Booking Demo</title>
+<meta name="description" content="A live pet grooming booking demo built by Khairasa Studio. Book grooming for your dog or cat, and it lands in the clinic dashboard." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="../../assets/img/favicon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fff8f1; --panel:#fffdfa; --card:#ffffff;
+    --teal:#16a39a; --teal-dark:#0f7d76; --teal-soft:#e3f5f3;
+    --coral:#ff7a59; --coral-soft:#ffe9e2;
+    --ink:#243640; --muted:#6f8088; --line:#ece3d8; --ok:#16a37a;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;font-weight:700;line-height:1.12;letter-spacing:-.01em;color:var(--ink)}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding-inline:clamp(18px,5vw,36px)}
+
+  .demobar{background:#3158A7;color:#fff;font-size:.82rem;text-align:center;padding:9px 16px;font-weight:600}
+  .demobar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .brand{font-family:"Baloo 2";font-weight:800;font-size:1.5rem;color:var(--teal);display:flex;align-items:center;gap:8px}
+  .brand .paw{width:30px;height:30px;background:var(--coral);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1rem}
+  .btn-teal{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--teal);color:#fff;font-weight:700;padding:13px 24px;border-radius:999px;font-size:.96rem;border:0;cursor:pointer;transition:.22s;box-shadow:0 8px 20px rgba(22,163,154,.28)}
+  .btn-teal:hover{background:var(--teal-dark);transform:translateY(-2px)}
+  .topnav .btn-teal{padding:10px 20px;font-size:.88rem}
+
+  /* hero */
+  .hero{padding:clamp(30px,6vw,70px) 0 clamp(40px,7vw,80px)}
+  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,52px);align-items:center}
+  .pill{display:inline-block;background:var(--coral-soft);color:#d8543a;font-weight:700;font-size:.8rem;padding:7px 15px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-size:clamp(2.4rem,6vw,4rem)}
+  .hero h1 .teal{color:var(--teal)}
+  .hero p{color:var(--muted);font-size:1.08rem;max-width:42ch;margin:16px 0 26px}
+  .hero__cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .hero__cta small{color:var(--muted);font-size:.86rem}
+  .hero__art{position:relative;height:clamp(280px,40vw,420px)}
+  .hero__art img{position:absolute;border-radius:22px;object-fit:cover;box-shadow:0 18px 40px rgba(36,54,64,.18);border:4px solid #fff}
+  .hero__art .a{width:62%;height:78%;left:0;top:0;z-index:2}
+  .hero__art .b{width:46%;height:54%;right:0;top:8%;z-index:1}
+  .hero__art .c{width:44%;height:46%;right:6%;bottom:0;z-index:3}
+
+  /* services */
+  .services{padding:clamp(44px,7vw,80px) 0;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto clamp(32px,5vw,48px)}
+  .sec-head .pill{margin-bottom:14px}
+  .sec-head h2{font-size:clamp(1.9rem,4.4vw,2.8rem)}
+  .sec-head p{color:var(--muted);margin-top:10px}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;text-align:center;box-shadow:0 8px 22px rgba(36,54,64,.05);transition:.25s}
+  .svc:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(36,54,64,.1)}
+  .svc .ic{width:56px;height:56px;border-radius:16px;background:var(--teal-soft);display:grid;place-items:center;font-size:1.6rem;margin:0 auto 14px}
+  .svc h3{font-size:1.18rem}
+  .svc .price{color:var(--teal);font-weight:700;margin-top:6px;font-family:"Baloo 2"}
+  .svc p{color:var(--muted);font-size:.9rem;margin-top:6px}
+
+  /* booking */
+  .book{padding:clamp(44px,7vw,86px) 0}
+  .card{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,40px);box-shadow:0 30px 60px rgba(36,54,64,.1)}
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+  .field label{font-size:.84rem;font-weight:700;color:var(--ink)}
+  .field input,.field select,.field textarea{background:#fff;border:1.5px solid var(--line);border-radius:13px;padding:13px 14px;color:var(--ink);font:inherit;font-size:.96rem;transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-soft)}
+  .field textarea{resize:vertical;min-height:70px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .pettoggle{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .pettoggle button{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;font-weight:700;font-size:1rem;color:var(--ink);cursor:pointer;transition:.18s}
+  .pettoggle button .e{font-size:1.4rem}
+  .pettoggle button.is-active{border-color:var(--teal);background:var(--teal-soft);color:var(--teal-dark)}
+  .slots{display:flex;flex-wrap:wrap;gap:8px}
+  .slot{padding:9px 15px;border:1.5px solid var(--line);border-radius:999px;font-size:.9rem;background:#fff;color:var(--ink);cursor:pointer;transition:.15s}
+  .slot:hover{border-color:var(--teal)}
+  .slot.is-active{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:700}
+  .book .btn-teal{width:100%;margin-top:6px}
+  .err{color:#e0573a;font-size:.84rem;margin-top:8px;min-height:1.1em}
+
+  /* confirmation */
+  .confirm{max-width:680px;margin:0 auto;background:var(--card);border:2px solid var(--ok);border-radius:24px;padding:clamp(26px,4vw,40px);text-align:center;box-shadow:0 30px 60px rgba(36,54,64,.12)}
+  .confirm .check{width:64px;height:64px;border-radius:50%;background:rgba(22,163,122,.12);color:var(--ok);display:grid;place-items:center;margin:0 auto 16px;font-size:2rem}
+  .confirm h2{font-size:1.9rem}
+  .confirm .ref{font-family:"Baloo 2";font-size:1.5rem;color:var(--teal);letter-spacing:.05em;margin:4px 0 16px}
+  .summary{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:16px 0}
+  .summary div{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .summary div:last-child{border-bottom:0}
+  .summary span:first-child{color:var(--muted)}
+  .summary span:last-child{font-weight:700;text-align:right}
+  .dash-note{font-size:.86rem;color:var(--muted);background:var(--teal-soft);border-radius:14px;padding:14px 16px}
+  .dash-note b{color:var(--teal-dark)}
+  .linkback{display:inline-block;margin-top:20px;color:var(--teal);font-weight:700;border-bottom:2px solid var(--teal);padding-bottom:2px}
+
+  footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+  footer a{color:var(--teal-dark);text-decoration:underline;text-underline-offset:2px}
+  .hidden{display:none}
+
+  @media(max-width:880px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:760px){
+    .hero__grid{grid-template-columns:1fr}
+    .hero__art{height:330px;max-width:440px;margin-inline:auto;width:100%}
+    .grid2{grid-template-columns:1fr}
+  }
+  @media(max-width:440px){.svc-grid{grid-template-columns:1fr;max-width:320px;margin-inline:auto}}
+</style>
+</head>
+<body>
+
+<div class="demobar">Live demo built by <a href="../../index.html">Khairasa Studio</a>. Fictional pet salon, your booking stays on this page (a real build saves it to the dashboard).</div>
+
+<header class="wrap topnav">
+  <div class="brand"><span class="paw" aria-hidden="true">&#128062;</span> Petala</div>
+  <button class="btn-teal" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book grooming</button>
+</header>
+
+<section class="hero wrap">
+  <div class="hero__grid">
+    <div>
+      <span class="pill">Grooming &amp; Spa for dogs &amp; cats</span>
+      <h1>Happy pets, <span class="teal">head to tail</span></h1>
+      <p>Gentle, caring grooming for your dog or cat. Book a slot in under a minute and we will pamper your best friend.</p>
+      <div class="hero__cta">
+        <button class="btn-teal" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Book grooming &#128062;</button>
+        <small>Open daily &middot; 09:00 to 18:00</small>
+      </div>
+    </div>
+    <div class="hero__art" aria-hidden="true">
+      <img class="a" src="../../assets/img/demo/pet/hero.jpg" alt="" loading="lazy" />
+      <img class="b" src="../../assets/img/demo/pet/cat.jpg" alt="" loading="lazy" />
+      <img class="c" src="../../assets/img/demo/pet/grooming.jpg" alt="" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill">Our services</span>
+      <h2>Pick a pampering</h2>
+      <p>For dogs and cats of every size. Prices are starting estimates for the demo.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc"><div class="ic">&#129532;</div><h3>Bath &amp; Brush</h3><p class="price">from Rp 85k</p><p>Wash, blow-dry, and brush out.</p></div>
+      <div class="svc"><div class="ic">&#9986;&#65039;</div><h3>Full Grooming</h3><p class="price">from Rp 150k</p><p>Bath, haircut, nails, ears, the works.</p></div>
+      <div class="svc"><div class="ic">&#128062;</div><h3>Nail &amp; Paw</h3><p class="price">from Rp 45k</p><p>Nail trim and paw care.</p></div>
+      <div class="svc"><div class="ic">&#10024;</div><h3>Spa Package</h3><p class="price">from Rp 220k</p><p>Full groom plus a relaxing spa treatment.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="pill">Booking</span>
+      <h2>Book your pet in</h2>
+      <p>Choose your pet, the service, and a time that suits you.</p>
+    </div>
+
+    <form class="card" id="bookForm" novalidate>
+      <div class="field">
+        <label>Your pet</label>
+        <div class="pettoggle" id="petToggle">
+          <button type="button" data-pet="Dog" class="is-active"><span class="e">&#128054;</span> Dog</button>
+          <button type="button" data-pet="Cat"><span class="e">&#128049;</span> Cat</button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="service">Service</label>
+          <select id="service" required>
+            <option value="">Select a service</option>
+            <option>Bath &amp; Brush</option>
+            <option>Full Grooming</option>
+            <option>Nail &amp; Paw</option>
+            <option>Spa Package</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Date</label>
+          <input type="date" id="date" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Time</label>
+        <div class="slots" id="slots">
+          <button type="button" class="slot">09:00</button>
+          <button type="button" class="slot">10:00</button>
+          <button type="button" class="slot">11:00</button>
+          <button type="button" class="slot">13:00</button>
+          <button type="button" class="slot">14:00</button>
+          <button type="button" class="slot">15:00</button>
+          <button type="button" class="slot">16:00</button>
+          <button type="button" class="slot">17:00</button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="petname">Pet's name</label>
+          <input type="text" id="petname" placeholder="e.g. Milo" required />
+        </div>
+        <div class="field">
+          <label for="owner">Your name</label>
+          <input type="text" id="owner" placeholder="Your name" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone / WhatsApp</label>
+        <input type="tel" id="phone" placeholder="08xx xxxx xxxx" required />
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" placeholder="Breed, temperament, special needs..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-teal">Confirm booking</button>
+      <p class="err" id="err"></p>
+    </form>
+
+    <div class="confirm hidden" id="confirm">
+      <div class="check" aria-hidden="true">&#10003;</div>
+      <h2>Booking received</h2>
+      <p class="ref" id="ref">PETALA-0000</p>
+      <div class="summary" id="summary"></div>
+      <p class="dash-note">In a real build, this booking drops straight into the salon's <b>admin dashboard</b> so staff can prep for your pet. Nothing leaves this page in the demo.</p>
+      <a class="linkback" href="../../index.html">&larr; Back to Khairasa Studio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  Demo only, no real bookings. Designed &amp; built by <a href="../../index.html">Khairasa Studio</a>.
+</footer>
+
+<script>
+(function(){
+  var form=document.getElementById("bookForm"),
+      confirm=document.getElementById("confirm"),
+      err=document.getElementById("err"),
+      dateEl=document.getElementById("date"),
+      slots=document.getElementById("slots"),
+      petToggle=document.getElementById("petToggle"),
+      chosenTime="", chosenPet="Dog";
+
+  var t=new Date(); var iso=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
+  dateEl.min=iso; dateEl.value=iso;
+
+  petToggle.addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    petToggle.querySelectorAll("button").forEach(function(x){x.classList.remove("is-active");});
+    b.classList.add("is-active"); chosenPet=b.getAttribute("data-pet");
+  });
+  slots.addEventListener("click",function(e){
+    var b=e.target.closest(".slot"); if(!b) return;
+    slots.querySelectorAll(".slot").forEach(function(s){s.classList.remove("is-active");});
+    b.classList.add("is-active"); chosenTime=b.textContent;
+  });
+
+  function fmtDate(v){ try{return new Date(v+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"long",year:"numeric"});}catch(e){return v;} }
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var service=document.getElementById("service").value,
+        petname=document.getElementById("petname").value.trim(),
+        owner=document.getElementById("owner").value.trim(),
+        phone=document.getElementById("phone").value.trim();
+    if(!service||!dateEl.value||!chosenTime||!petname||!owner||!phone){
+      err.textContent="Please choose a service, date, time, and fill in the names and phone.";
+      return;
+    }
+    err.textContent="";
+    var ref="PETALA-"+Math.floor(1000+Math.random()*9000);
+    document.getElementById("ref").textContent=ref;
+    var rows=[["Pet",chosenPet+" · "+petname],["Service",service],["Date",fmtDate(dateEl.value)],["Time",chosenTime],["Owner",owner],["Phone",phone]];
+    document.getElementById("summary").innerHTML=rows.map(function(r){
+      return "<div><span>"+r[0]+"</span><span>"+r[1]+"</span></div>";
+    }).join("");
+    form.classList.add("hidden");
+    confirm.classList.remove("hidden");
+    confirm.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+})();
+</script>
+</body>
+</html>

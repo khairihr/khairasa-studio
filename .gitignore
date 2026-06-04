@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Dependencies (none required to run, but just in case)
+node_modules/
+
+# Local tooling artifacts
+tools/__pycache__/
+tools/shots/

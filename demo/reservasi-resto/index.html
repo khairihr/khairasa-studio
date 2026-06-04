@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Senja Kitchen &amp; Bar | Reservation Demo</title>
+<meta name="description" content="A live restaurant reservation demo built by Khairasa Studio. Pick a date, time, and party size, and the booking is recorded in the restaurant dashboard." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="../../assets/img/favicon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#14110e; --panel:#1d1915; --panel-2:#252019; --card:#211c17;
+    --gold:#caa46a; --gold-soft:#e0c89c; --cream:#f3ece0; --muted:#a79f93;
+    --line:rgba(202,164,106,.22); --ok:#7bbf8f;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:.01em}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding-inline:clamp(18px,5vw,36px)}
+
+  /* demo ribbon */
+  .demobar{background:#3158A7;color:#fff;font-size:.82rem;text-align:center;padding:9px 16px;font-weight:600}
+  .demobar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+
+  /* nav */
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+  .brand{font-family:"Cormorant Garamond",serif;font-size:1.7rem;letter-spacing:.28em;color:var(--gold);padding-left:.28em}
+  .brand small{display:block;font-family:"Plus Jakarta Sans";font-size:.6rem;letter-spacing:.34em;color:var(--muted);margin-top:-2px;padding-left:.05em}
+  .topnav .btn-mini{border:1px solid var(--line);padding:9px 18px;border-radius:999px;font-size:.84rem;font-weight:600;color:var(--gold-soft);transition:.2s}
+  .topnav .btn-mini:hover{background:var(--gold);color:#14110e;border-color:var(--gold)}
+
+  /* hero */
+  .hero{position:relative;min-height:78vh;display:grid;place-items:center;text-align:center;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero__bg{position:absolute;inset:0;background:linear-gradient(rgba(20,17,14,.5),rgba(20,17,14,.82)),url("../../assets/img/demo/resto/hero.jpg") center/cover;transform:scale(1.05)}
+  .hero__in{position:relative;padding:90px 20px}
+  .hero .eyebrow{letter-spacing:.34em;text-transform:uppercase;font-size:.74rem;color:var(--gold);margin-bottom:18px}
+  .hero h1{font-size:clamp(2.6rem,7vw,5rem);color:var(--cream)}
+  .hero h1 .ital{font-style:italic;color:var(--gold-soft)}
+  .hero p{color:var(--muted);max-width:46ch;margin:18px auto 30px;font-size:1.05rem}
+  .btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#14110e;font-weight:700;padding:15px 30px;border-radius:999px;font-size:1rem;transition:.25s;border:0;cursor:pointer}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
+
+  /* ambiance strip */
+  .amb{padding:clamp(56px,8vw,96px) 0}
+  .amb__grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:18px;align-items:stretch}
+  .amb__text h2{font-size:clamp(1.8rem,4vw,2.8rem);color:var(--cream)}
+  .amb__text p{color:var(--muted);margin-top:14px;font-size:.98rem}
+  .amb__grid img{width:100%;height:100%;min-height:220px;object-fit:cover;border-radius:14px;border:1px solid var(--line)}
+
+  /* reservation */
+  .resv{padding:clamp(40px,7vw,90px) 0;background:var(--panel);border-top:1px solid var(--line)}
+  .resv__head{text-align:center;margin-bottom:40px}
+  .resv__head .eyebrow{letter-spacing:.3em;text-transform:uppercase;font-size:.74rem;color:var(--gold);margin-bottom:12px}
+  .resv__head h2{font-size:clamp(2rem,5vw,3.2rem);color:var(--cream)}
+  .resv__head p{color:var(--muted);margin-top:10px}
+  .card{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(26px,4vw,40px);box-shadow:0 30px 60px rgba(0,0,0,.4)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+  .field label{font-size:.82rem;font-weight:600;color:var(--gold-soft);letter-spacing:.02em}
+  .field input,.field select,.field textarea{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:13px 14px;color:var(--cream);font:inherit;font-size:.96rem;transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px rgba(202,164,106,.15)}
+  .field textarea{resize:vertical;min-height:74px}
+  .slots{display:flex;flex-wrap:wrap;gap:8px}
+  .slot{padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;background:var(--panel-2);color:var(--cream);cursor:pointer;transition:.15s}
+  .slot:hover{border-color:var(--gold)}
+  .slot.is-active{background:var(--gold);color:#14110e;border-color:var(--gold);font-weight:700}
+  .resv .btn-gold{width:100%;justify-content:center;margin-top:8px}
+  .err{color:#e79a8f;font-size:.84rem;margin-top:8px;min-height:1.1em}
+
+  /* confirmation */
+  .confirm{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--ok);border-radius:20px;padding:clamp(26px,4vw,40px);text-align:center;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+  .confirm .check{width:64px;height:64px;border-radius:50%;background:rgba(123,191,143,.15);color:var(--ok);display:grid;place-items:center;margin:0 auto 18px;font-size:2rem}
+  .confirm h2{color:var(--cream);font-size:2rem}
+  .confirm .ref{font-family:"Cormorant Garamond",serif;font-size:1.6rem;color:var(--gold);letter-spacing:.08em;margin:6px 0 18px}
+  .summary{text-align:left;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:18px 0}
+  .summary div{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .summary div:last-child{border-bottom:0}
+  .summary span:first-child{color:var(--muted)}
+  .summary span:last-child{color:var(--cream);font-weight:600;text-align:right}
+  .dash-note{font-size:.86rem;color:var(--muted);background:var(--panel-2);border:1px dashed var(--line);border-radius:12px;padding:14px 16px;margin-top:6px}
+  .dash-note b{color:var(--gold-soft)}
+  .linkback{display:inline-block;margin-top:22px;color:var(--gold);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:2px}
+
+  footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+  footer a{color:var(--gold-soft);text-decoration:underline;text-underline-offset:2px}
+  .hidden{display:none}
+
+  @media(max-width:780px){
+    .amb__grid{grid-template-columns:1fr}
+    .amb__grid img{min-height:200px}
+    .grid2{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="demobar">Live demo built by <a href="../../index.html">Khairasa Studio</a>. Fictional restaurant, your booking stays on this page (a real build saves it to the dashboard).</div>
+
+<header class="wrap topnav">
+  <div class="brand">SENJA<small>KITCHEN &amp; BAR</small></div>
+  <button class="btn-mini" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Reserve a table</button>
+</header>
+
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__in wrap">
+    <p class="eyebrow">Est. 2024 &middot; Bandung</p>
+    <h1>A table set <span class="ital">just for you</span></h1>
+    <p>Seasonal plates, slow evenings, and warm light. Reserve your table in under a minute.</p>
+    <button class="btn-gold" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">Reserve a table</button>
+  </div>
+</section>
+
+<section class="amb wrap">
+  <div class="amb__grid">
+    <div class="amb__text">
+      <h2>An evening worth slowing down for</h2>
+      <p>Tucked away from the noise, Senja pairs a seasonal kitchen with a quiet, golden room. Perfect for date nights, small celebrations, and unhurried dinners.</p>
+    </div>
+    <img src="../../assets/img/demo/resto/ambiance-1.jpg" alt="Dining room" loading="lazy" />
+    <img src="../../assets/img/demo/resto/ambiance-2.jpg" alt="Terrace seating" loading="lazy" />
+  </div>
+</section>
+
+<section class="resv" id="book">
+  <div class="wrap">
+    <div class="resv__head">
+      <p class="eyebrow">Reservations</p>
+      <h2>Book your table</h2>
+      <p>Pick a date, time, and party size. We will hold your table.</p>
+    </div>
+
+    <!-- FORM -->
+    <form class="card" id="resvForm" novalidate>
+      <div class="grid2">
+        <div class="field">
+          <label for="date">Date</label>
+          <input type="date" id="date" required />
+        </div>
+        <div class="field">
+          <label for="party">Party size</label>
+          <select id="party" required>
+            <option value="">Select</option>
+            <option>1 guest</option><option>2 guests</option><option>3 guests</option>
+            <option>4 guests</option><option>5 guests</option><option>6 guests</option>
+            <option>7 guests</option><option>8 guests</option><option>9+ guests (we will call)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Time</label>
+        <div class="slots" id="slots">
+          <button type="button" class="slot">17:00</button>
+          <button type="button" class="slot">17:30</button>
+          <button type="button" class="slot">18:00</button>
+          <button type="button" class="slot">18:30</button>
+          <button type="button" class="slot">19:00</button>
+          <button type="button" class="slot">19:30</button>
+          <button type="button" class="slot">20:00</button>
+          <button type="button" class="slot">20:30</button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input type="tel" id="phone" placeholder="08xx xxxx xxxx" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="occasion">Occasion (optional)</label>
+        <select id="occasion">
+          <option value="">No special occasion</option>
+          <option>Birthday</option><option>Anniversary</option>
+          <option>Date night</option><option>Business dinner</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" placeholder="Allergies, seating preference, etc."></textarea>
+      </div>
+
+      <button type="submit" class="btn-gold">Confirm reservation</button>
+      <p class="err" id="err"></p>
+    </form>
+
+    <!-- CONFIRMATION -->
+    <div class="confirm hidden" id="confirm">
+      <div class="check" aria-hidden="true">&#10003;</div>
+      <h2>Reservation received</h2>
+      <p class="ref" id="ref">SENJA-0000</p>
+      <div class="summary" id="summary"></div>
+      <p class="dash-note">In a real build, this booking lands instantly in the restaurant's <b>admin dashboard</b>, where staff confirm and manage tables. No data leaves this page in the demo.</p>
+      <a class="linkback" href="../../index.html">&larr; Back to Khairasa Studio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  Demo only, no real bookings. Designed &amp; built by <a href="../../index.html">Khairasa Studio</a>.
+</footer>
+
+<script>
+(function(){
+  var form=document.getElementById("resvForm"),
+      confirm=document.getElementById("confirm"),
+      err=document.getElementById("err"),
+      dateEl=document.getElementById("date"),
+      slots=document.getElementById("slots"),
+      chosenTime="";
+
+  // min date = today
+  var t=new Date(); var iso=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
+  dateEl.min=iso; dateEl.value=iso;
+
+  slots.addEventListener("click",function(e){
+    var b=e.target.closest(".slot"); if(!b) return;
+    slots.querySelectorAll(".slot").forEach(function(s){s.classList.remove("is-active");});
+    b.classList.add("is-active"); chosenTime=b.textContent;
+  });
+
+  function fmtDate(v){ try{return new Date(v+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"long",year:"numeric"});}catch(e){return v;} }
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var name=document.getElementById("name").value.trim(),
+        phone=document.getElementById("phone").value.trim(),
+        party=document.getElementById("party").value,
+        occ=document.getElementById("occasion").value;
+    if(!dateEl.value||!party||!chosenTime||!name||!phone){
+      err.textContent="Please fill the date, party size, time, name, and phone.";
+      return;
+    }
+    err.textContent="";
+    var ref="SENJA-"+Math.floor(1000+Math.random()*9000);
+    document.getElementById("ref").textContent=ref;
+    var rows=[["Name",name],["Date",fmtDate(dateEl.value)],["Time",chosenTime],["Party",party],["Phone",phone]];
+    if(occ) rows.push(["Occasion",occ]);
+    document.getElementById("summary").innerHTML=rows.map(function(r){
+      return "<div><span>"+r[0]+"</span><span>"+r[1]+"</span></div>";
+    }).join("");
+    form.classList.add("hidden");
+    confirm.classList.remove("hidden");
+    confirm.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+})();
+</script>
+</body>
+</html>
