@@ -219,12 +219,18 @@
     <div class="closing__inner reveal">
       <p class="eyebrow eyebrow--script">Let us capture it</p>
       <h2>Check your date</h2>
-      <p class="closing__lead">Favorite dates fill up fast. Send us yours and we will confirm, free and no pressure.</p>
-      <div class="closing__routes">
-        <a class="btn btn--wa btn--lg" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I am interested in wedding content. My wedding date is:">
-          <span class="ico-wa" aria-hidden="true"></span> Check your date on WhatsApp
-        </a>
-      </div>
+      <p class="closing__lead">Tell us about your day and we will open WhatsApp with the details ready. Free, no pressure.</p>
+      <form class="wa-form reveal" data-intro="Hi Khairasa Studio, I would like to book wedding content.">
+        <div class="wa-form__row">
+          <div class="wa-field"><label for="wf-name">Your name</label><input id="wf-name" data-label="Name" data-required placeholder="Your name" /></div>
+          <div class="wa-field"><label for="wf-date">Wedding date</label><input type="date" id="wf-date" data-label="Wedding date" /></div>
+        </div>
+        <div class="wa-field"><label for="wf-pkg">Package interest</label><select id="wf-pkg" data-label="Package"><option value="">Not sure yet</option><option>Single Session</option><option>Half Day</option><option>Full Coverage</option></select></div>
+        <div class="wa-field"><label for="wf-notes">City, venue, anything else</label><textarea id="wf-notes" data-label="Details" placeholder="e.g. Bandung, outdoor akad and resepsi"></textarea></div>
+        <button type="submit" class="btn btn--wa btn--lg"><span class="ico-wa" aria-hidden="true"></span> Send via WhatsApp</button>
+        <p class="wa-form__err"></p>
+        <p class="wa-form__alt">Prefer to just chat? <a href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I am interested in wedding content. My wedding date is:">Message us directly &rarr;</a></p>
+      </form>
     </div>
   </div>
 </section>

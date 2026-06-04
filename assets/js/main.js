@@ -141,12 +141,37 @@
     });
   }
 
+  /* ---- 8. Guided forms: build a clear WhatsApp message from the fields ---- */
+  function wireForms() {
+    var forms = document.querySelectorAll(".wa-form");
+    forms.forEach(function (form) {
+      var err = form.querySelector(".wa-form__err");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var fields = form.querySelectorAll("[data-label]");
+        var lines = [], missing = false;
+        fields.forEach(function (f) {
+          var val = (f.value || "").trim();
+          if (f.hasAttribute("data-required") && !val) { missing = true; f.style.borderColor = "var(--red)"; }
+          else { f.style.borderColor = ""; }
+          if (val) lines.push(f.getAttribute("data-label") + ": " + val);
+        });
+        if (missing) { if (err) err.textContent = "Please fill in the required fields."; return; }
+        if (err) err.textContent = "";
+        var intro = form.getAttribute("data-intro") || "Hi Khairasa Studio,";
+        var msg = intro + "\n\n" + lines.join("\n");
+        window.open(WA_BASE + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+      });
+    });
+  }
+
   function init() {
     wireWhatsApp();
     wireNavScroll();
     wireMobileMenu();
     wireReveal();
     wireFaq();
+    wireForms();
     buildContribGraph();
     wireMisc();
   }

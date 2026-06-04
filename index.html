@@ -206,15 +206,17 @@
     <div class="closing__inner reveal">
       <p class="eyebrow eyebrow--script">One studio, two crafts</p>
       <h2>Let us talk first</h2>
-      <p class="closing__lead">Free, no pressure. Pick what fits you, and the chat opens with the right context.</p>
-      <div class="closing__routes">
-        <a class="btn btn--wa btn--lg" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I am interested in wedding content. Could you share packages and available dates?">
-          <span class="ico-wa" aria-hidden="true"></span> I want wedding content
-        </a>
-        <a class="btn btn--blue btn--lg" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I want to build a website or system. Can we talk?">
-          I want a website / system
-        </a>
-      </div>
+      <p class="closing__lead">Tell us a little and we will open WhatsApp with your details ready. Free, no pressure.</p>
+      <form class="wa-form reveal" data-intro="Hi Khairasa Studio, I would like to start a conversation.">
+        <div class="wa-form__row">
+          <div class="wa-field"><label for="hf-name">Your name</label><input id="hf-name" data-label="Name" data-required placeholder="Your name" autocomplete="name" /></div>
+          <div class="wa-field"><label for="hf-int">I am interested in</label><select id="hf-int" data-label="Interested in" data-required><option value="">Select one</option><option>Wedding content</option><option>Website or system</option><option>Both</option></select></div>
+        </div>
+        <div class="wa-field"><label for="hf-msg">A few details</label><textarea id="hf-msg" data-label="Details" placeholder="Wedding date, business type, what you need..."></textarea></div>
+        <button type="submit" class="btn btn--wa btn--lg"><span class="ico-wa" aria-hidden="true"></span> Send via WhatsApp</button>
+        <p class="wa-form__err"></p>
+        <p class="wa-form__alt">Prefer to just chat? <a href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I would like a free consultation.">Message us directly &rarr;</a></p>
+      </form>
     </div>
   </div>
 </section>
