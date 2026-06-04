@@ -7,7 +7,7 @@
   var WA_BASE = "https://wa.me/6285121525015";
   // Free access key from web3forms.com (use Khairasagroup@gmail.com). Safe to be public.
   // Until this is set, the forms fall back to opening WhatsApp with the details.
-  var WEB3_KEY = "a7831c74-479c-4ded-ac41-53394a1a6041";
+  var WEB3_KEY = "07e2fba2-fd33-4bee-89d8-c41e5eff2a81";
 
   /* ---- 1. WhatsApp links: build pre-filled href from data-wa-text ---- */
   function wireWhatsApp() {
