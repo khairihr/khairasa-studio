@@ -359,6 +359,8 @@ section { padding-block: clamp(64px, 9vw, 130px); }
 .footer__logo { height: 52px; width: auto; filter: brightness(0) invert(1); opacity: .95; margin-bottom: 18px; }
 .footer__brand p { font-size: .95rem; max-width: 42ch; }
 .footer__base { margin-top: 10px; color: rgba(255,255,255,.6); font-size: .9rem; }
+.footer__base a { color: rgba(255,255,255,.85); border-bottom: 1px solid rgba(255,255,255,.28); padding-bottom: 1px; transition: color .2s; }
+.footer__base a:hover { color: #fff; }
 .footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .footer__cols h4 { color: #fff; font-family: "Plus Jakarta Sans", sans-serif; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 16px; }
 .footer__cols a { display: block; padding: 7px 0; font-size: .95rem; color: rgba(255,255,255,.78); transition: color .2s; }
