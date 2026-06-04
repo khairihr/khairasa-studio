@@ -362,7 +362,7 @@ section { padding-block: clamp(64px, 9vw, 130px); }
 .wa-field label { font-size: .82rem; font-weight: 700; color: var(--ink-soft); }
 .wa-field input, .wa-field select, .wa-field textarea { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; font: inherit; font-size: .96rem; color: var(--ink); transition: border-color .2s, box-shadow .2s; }
 .wa-field input:focus, .wa-field select:focus, .wa-field textarea:focus { outline: 0; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(49,88,167,.14); }
-.wa-field textarea { resize: vertical; min-height: 76px; }
+.wa-field textarea { resize: none; min-height: 76px; overflow: hidden; }
 .wa-form .btn { width: 100%; margin-top: 6px; }
 .wa-form__err { color: var(--red); font-size: .84rem; margin-top: 8px; min-height: 1.1em; text-align: center; }
 .wa-form__alt { text-align: center; font-size: .9rem; color: var(--muted); margin-top: 4px; }

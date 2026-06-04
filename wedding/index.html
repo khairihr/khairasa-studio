@@ -223,10 +223,13 @@
       <form class="wa-form reveal" data-intro="Hi Khairasa Studio, I would like to book wedding content.">
         <div class="wa-form__row">
           <div class="wa-field"><label for="wf-name">Your name</label><input id="wf-name" data-label="Name" data-required placeholder="Your name" /></div>
-          <div class="wa-field"><label for="wf-date">Wedding date</label><input type="date" id="wf-date" data-label="Wedding date" /></div>
+          <div class="wa-field"><label for="wf-wa">WhatsApp number</label><input id="wf-wa" type="tel" data-label="WhatsApp number" data-required placeholder="08xx xxxx xxxx" autocomplete="tel" /></div>
         </div>
-        <div class="wa-field"><label for="wf-pkg">Package interest</label><select id="wf-pkg" data-label="Package"><option value="">Not sure yet</option><option>Single Session</option><option>Half Day</option><option>Full Coverage</option></select></div>
-        <div class="wa-field"><label for="wf-notes">City, venue, anything else</label><textarea id="wf-notes" data-label="Details" placeholder="e.g. Bandung, outdoor akad and resepsi"></textarea></div>
+        <div class="wa-form__row">
+          <div class="wa-field"><label for="wf-date">Wedding date (optional)</label><input type="date" id="wf-date" data-label="Wedding date" /></div>
+          <div class="wa-field"><label for="wf-pkg">Package interest</label><select id="wf-pkg" data-label="Package"><option value="">Not sure yet</option><option>Single Session</option><option>Half Day</option><option>Full Coverage</option></select></div>
+        </div>
+        <div class="wa-field"><label for="wf-notes">City, venue, anything else (optional)</label><textarea id="wf-notes" data-label="Details" placeholder="e.g. Bandung, outdoor akad and resepsi"></textarea></div>
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" /><button type="submit" class="btn btn--blue btn--lg">Send my details</button>
         <p class="wa-form__err"></p>
         <p class="wa-form__alt">Prefer to just chat? <a href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I am interested in wedding content. My wedding date is:">Message us directly &rarr;</a></p>

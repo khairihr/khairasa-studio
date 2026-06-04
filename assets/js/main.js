@@ -172,6 +172,7 @@
 
         var payload = { access_key: WEB3_KEY, subject: "New lead: " + (data.Name || "website enquiry"), from_name: "Khairasa Studio website", message: intro + "\n\n" + lines.join("\n") };
         for (var k in data) { if (data.hasOwnProperty(k)) payload[k] = data[k]; }
+        if (data["Email"]) payload.replyto = data["Email"]; // reply straight to the lead
         if (btn) { btn.disabled = true; btn.dataset.t = btn.textContent; btn.textContent = "Sending..."; }
         fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) })
           .then(function (r) { return r.json(); })
@@ -187,6 +188,13 @@
     });
   }
 
+  /* ---- 9. Auto-grow textareas as the visitor types ---- */
+  function wireAutogrow() {
+    var tas = document.querySelectorAll(".wa-field textarea");
+    function grow(t) { t.style.height = "auto"; t.style.height = t.scrollHeight + "px"; }
+    tas.forEach(function (t) { t.style.overflow = "hidden"; t.addEventListener("input", function () { grow(t); }); });
+  }
+
   function init() {
     wireWhatsApp();
     wireNavScroll();
@@ -194,6 +202,7 @@
     wireReveal();
     wireFaq();
     wireForms();
+    wireAutogrow();
     buildContribGraph();
     wireMisc();
   }
