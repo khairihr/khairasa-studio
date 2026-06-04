@@ -23,17 +23,25 @@
   <meta name="twitter:description" content="One studio, two crafts. Wedding content that gives you chills, and websites that actually work." />
   <meta name="twitter:image" content="https://khairihr.github.io/khairasa-studio/assets/img/og-cover.png" />
 
-  <!-- Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <style>
+    .door__thumb { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r); margin-bottom: 20px; }
+    .door--tech .door__thumb { object-position: top; }
+    .hubtrust { text-align: center; padding-top: 0; }
+    .chip { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; margin-bottom: 18px; }
+    .chip span { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: var(--pill); padding: 9px 16px; font-size: .9rem; font-weight: 600; color: var(--ink-soft); box-shadow: var(--sh-sm); }
+    .chip span::before { content: "\2713"; color: var(--wa-dark); font-weight: 800; }
+    .hubtrust__line { font-family: "Fraunces", serif; font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--blue-deep); }
+    .hubtrust__line a { color: var(--blue); font-style: normal; font-weight: 700; border-bottom: 1px solid var(--blue); }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -57,36 +65,31 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="container nav__inner">
     <a class="nav__brand" href="#top" aria-label="Khairasa Studio, home">
       <img src="assets/img/logo.png" alt="Khairasa Studio" width="160" height="68" />
     </a>
-
     <nav class="nav__links" aria-label="Main navigation">
-      <a href="#wedding">Wedding</a>
-      <a href="#website">Websites</a>
-      <a href="#portfolio">Portfolio</a>
+      <a href="wedding/">Wedding</a>
+      <a href="website/">Websites</a>
+      <a href="website/#portfolio">Portfolio</a>
       <a href="about/">About</a>
       <a href="#faq">FAQ</a>
     </nav>
-
     <a class="btn btn--wa nav__cta" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I would like a free consultation.">
       <span class="ico-wa" aria-hidden="true"></span> Free Consultation
     </a>
-
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
-
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <a href="#wedding">Wedding Content</a>
-    <a href="#website">Websites &amp; Systems</a>
-    <a href="#portfolio">Portfolio</a>
+    <a href="wedding/">Wedding Content</a>
+    <a href="website/">Websites &amp; Systems</a>
+    <a href="website/#portfolio">Portfolio</a>
     <a href="about/">About</a>
-    <a href="#team">Team</a>
+    <a href="service/">Service &amp; SLA</a>
     <a href="#faq">FAQ</a>
     <a class="btn btn--wa" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I would like a free consultation.">
       <span class="ico-wa" aria-hidden="true"></span> Free Consultation on WhatsApp
@@ -102,30 +105,23 @@
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="container hero__inner">
     <p class="eyebrow reveal">Creative &amp; Technology Studio</p>
-
     <img class="hero__logo reveal" src="assets/img/logo.png" alt="Khairasa Studio" width="520" height="222" />
-
     <h1 class="hero__title reveal">
       Stories worth watching.<br />
       <span class="ital">Systems built to last.</span>
     </h1>
-
     <p class="hero__sub reveal">
-      Wedding content that gives you chills, and websites and digital systems that actually work.
-      Two crafts, one studio.
+      Wedding films people rewatch, and websites that take bookings. Two crafts, one studio.
     </p>
-
+    <p class="hero__credit reveal">
+      Built by an event planner and designer, and a production-SaaS engineer. The founders do the work.
+    </p>
     <div class="hero__cta reveal">
       <a class="btn btn--wa btn--lg" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I would like a free consultation.">
         <span class="ico-wa" aria-hidden="true"></span> Free Consultation on WhatsApp
       </a>
       <p class="hero__microtrust">Quick reply, no consultation fee, no pressure.</p>
     </div>
-
-    <p class="hero__credit reveal">
-      Built by the founders themselves. Not a template, not a reseller.
-    </p>
-
     <ul class="hero__stats reveal" aria-label="Track record">
       <li><strong>1,300+</strong><span>code changes shipped to live products</span></li>
       <li><strong>Millions</strong><span>of users served by systems we built</span></li>
@@ -135,415 +131,74 @@
   </div>
 </section>
 
-<!-- ============ FORK ============ -->
+<!-- ============ FORK (the router) ============ -->
 <section class="fork" id="start">
   <div class="container">
     <header class="section-head reveal">
-      <p class="eyebrow">Where do you want to start?</p>
+      <p class="eyebrow">Which one are you here for?</p>
       <h2>Pick your path</h2>
-      <p class="section-lead">Two services, one and the same team. Tap whichever fits you best.</p>
+      <p class="section-lead">Two services, one and the same team. Tap whichever fits you, and the rest gets out of your way.</p>
     </header>
-
     <div class="fork__grid">
-      <a class="door door--wedding reveal" href="#wedding">
+      <a class="door door--wedding reveal" href="wedding/">
+        <img class="door__thumb" src="assets/img/wedding/reel-2.jpg" alt="A wedding moment" loading="lazy" />
         <span class="door__tag">For your special day</span>
         <h3>Wedding Content Creator</h3>
-        <p>Cinematic reels, same-day edits, and behind the scenes for your big day. Ready to post on Instagram and TikTok.</p>
-        <span class="door__go">See wedding services <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        <p>Cinematic reels, same-day edits, behind the scenes. Led by a Cum Laude event planner who keeps your day calm. Ready to post on IG and TikTok.</p>
+        <span class="door__go">Enter the wedding studio <span class="arrow" aria-hidden="true">&rarr;</span></span>
       </a>
-
-      <a class="door door--tech reveal" href="#website">
+      <a class="door door--tech reveal" href="website/">
+        <img class="door__thumb" src="assets/img/demo/resto/hero.jpg" alt="A website demo" loading="lazy" />
         <span class="door__tag">For businesses &amp; brands</span>
         <h3>Websites &amp; Digital Systems</h3>
-        <p>Restaurant reservations, pet grooming bookings, donations, catalogs, all the way to WhatsApp and payment integrations. It actually works, not just looks pretty.</p>
-        <span class="door__go">See website services <span class="arrow" aria-hidden="true">&rarr;</span></span>
+        <p>Reservations, bookings, catalogs, custom systems. Built by a production-SaaS engineer, not a template shop. Try the live booking demos inside.</p>
+        <span class="door__go">Enter the web studio <span class="arrow" aria-hidden="true">&rarr;</span></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ WEDDING TRACK ============ -->
-<section class="track track--wedding" id="wedding">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow eyebrow--script">Wedding Content</p>
-      <h2>Your big day, made into content that lasts</h2>
-      <p class="section-lead">
-        More than documentation. We catch the natural, spontaneous moments, then craft them into reels worth rewatching and worth saving by every guest.
-      </p>
-    </header>
-
-    <figure class="mood-banner reveal">
-      <img src="assets/img/wedding/mood-wide.jpg" alt="An akad nikah ceremony" loading="lazy" />
-      <figcaption><span class="ital">Every moment has a story.</span> We help you tell it.</figcaption>
-    </figure>
-
-    <div class="feature-grid reveal">
-      <article class="feature">
-        <span class="feature__ico" aria-hidden="true">&#127909;</span>
-        <h3>Cinematic reels</h3>
-        <p>A clean visual flow with a real story, not random clips. Vertical, ready for feed and reels.</p>
-      </article>
-      <article class="feature">
-        <span class="feature__ico" aria-hidden="true">&#9889;</span>
-        <h3>Same-day edit</h3>
-        <p>A teaser ready the same day, playable before the guests head home. Shared while the moment is still warm.</p>
-      </article>
-      <article class="feature">
-        <span class="feature__ico" aria-hidden="true">&#128247;</span>
-        <h3>Behind the scenes</h3>
-        <p>The candid side that often gets missed: the prep, the tears, the laughter. The parts remembered most.</p>
-      </article>
-      <article class="feature">
-        <span class="feature__ico" aria-hidden="true">&#128241;</span>
-        <h3>Ready to post</h3>
-        <p>Formats and ratios made for Instagram and TikTok. Just post, no re-editing needed.</p>
-      </article>
+<!-- ============ TRUST CHIP + LINE ============ -->
+<section class="hubtrust">
+  <div class="container container--narrow reveal">
+    <div class="chip">
+      <span>Revisions until it is right</span>
+      <span>Deposit back if the concept misses</span>
+      <span>On-time wedding delivery</span>
     </div>
-
-    <!-- Reels gallery (a glimpse of the moments; real samples sent via WhatsApp) -->
-    <div class="reels reveal" aria-label="Gallery of wedding moments">
-      <figure class="phone phone--blush">
-        <div class="phone__screen"><img src="assets/img/wedding/reel-1.jpg" alt="An akad ceremony moment" loading="lazy" /></div>
-        <figcaption>The akad</figcaption>
-      </figure>
-      <figure class="phone phone--sage">
-        <div class="phone__screen"><img src="assets/img/wedding/reel-2.jpg" alt="A wedding reception moment" loading="lazy" /></div>
-        <figcaption>Reception</figcaption>
-      </figure>
-      <figure class="phone phone--gold">
-        <div class="phone__screen"><img src="assets/img/wedding/reel-3.jpg" alt="A siraman ritual moment" loading="lazy" /></div>
-        <figcaption>Siraman</figcaption>
-      </figure>
-      <figure class="phone phone--blue">
-        <div class="phone__screen"><img src="assets/img/wedding/reel-4.jpg" alt="A traditional procession moment" loading="lazy" /></div>
-        <figcaption>Traditional procession</figcaption>
-      </figure>
-    </div>
-    <p class="reels__note reveal">A glimpse of the moments we capture. We send real reel samples directly on WhatsApp. See more on <a href="https://www.instagram.com/khairasastudio" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">Instagram</a> and <a href="https://www.tiktok.com/@khairasa.group" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;">TikTok</a>.</p>
-
-    <!-- Wedding packages -->
-    <div class="pricing reveal" id="wedding-packages">
-      <h3 class="pricing__title">Wedding content packages</h3>
-      <p class="pricing__note">The prices below are starting estimates. The final detail depends on your date, location, and needs, all discussed when we chat. USD shown is approximate.</p>
-      <div class="pricing__grid">
-        <article class="plan">
-          <h4>Single Session</h4>
-          <p class="plan__price"><span>from</span> Rp 900,000 <em>&asymp; $57</em></p>
-          <ul>
-            <li>1 cinematic reel (60 to 90 seconds)</li>
-            <li>Coverage for 1 session (akad or reception)</li>
-            <li>Delivered in 24 to 48 hours</li>
-            <li>Ready for IG &amp; TikTok</li>
-          </ul>
-          <a class="btn btn--outline" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa, I am interested in the Single Session wedding package. My event date is:">Choose this package</a>
-        </article>
-
-        <article class="plan plan--popular">
-          <span class="plan__badge">Most Popular</span>
-          <h4>Half Day</h4>
-          <p class="plan__price"><span>from</span> Rp 1,500,000 <em>&asymp; $95</em></p>
-          <ul>
-            <li>2 reels (highlight + behind the scenes)</li>
-            <li>Same-day teaser on the day</li>
-            <li>Half-day coverage</li>
-            <li>Delivered in 24 to 48 hours</li>
-            <li>Ready for IG &amp; TikTok</li>
-          </ul>
-          <a class="btn btn--wa" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa, I am interested in the Half Day wedding package. My event date is:">Choose this package</a>
-        </article>
-
-        <article class="plan">
-          <h4>Full Coverage</h4>
-          <p class="plan__price"><span>from</span> Rp 2,800,000 <em>&asymp; $175</em></p>
-          <ul>
-            <li>3+ reels (akad, reception, BTS)</li>
-            <li>Same-day teaser on the day</li>
-            <li>Coverage from akad to reception</li>
-            <li>Priority delivery &amp; revisions</li>
-            <li>Ready for IG &amp; TikTok</li>
-          </ul>
-          <a class="btn btn--outline" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa, I am interested in the Full Coverage wedding package. My event date is:">Choose this package</a>
-        </article>
-      </div>
-    </div>
-
-    <!-- Wedding process -->
-    <div class="steps reveal">
-      <h3 class="steps__title">How to book</h3>
-      <ol class="steps__list">
-        <li><span class="steps__n">1</span><div><strong>Chat on WhatsApp</strong><p>Tell us your date and event plans.</p></div></li>
-        <li><span class="steps__n">2</span><div><strong>Check date &amp; package</strong><p>We confirm availability and the package that fits.</p></div></li>
-        <li><span class="steps__n">3</span><div><strong>Deposit &amp; lock your date</strong><p>Your date is locked in, no one else can take it.</p></div></li>
-        <li><span class="steps__n">4</span><div><strong>The day &amp; delivery</strong><p>A teaser on the same day, full reels in 24 to 48 hours.</p></div></li>
-      </ol>
-    </div>
-
-    <div class="track__cta reveal">
-      <a class="btn btn--wa btn--lg" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I am interested in wedding content. Could you share packages and available dates?">
-        <span class="ico-wa" aria-hidden="true"></span> Check your date on WhatsApp
-      </a>
-      <p class="track__cta-note">Favorite dates fill up fast. Secure yours now.</p>
-    </div>
+    <p class="hubtrust__line">One studio, two crafts. No junior handoff, no agency markup. <a href="about/">Meet the founders &rarr;</a></p>
   </div>
 </section>
 
-<!-- ============ WEBSITE TRACK ============ -->
-<section class="track track--tech" id="website">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Websites &amp; Digital Systems</p>
-      <h2>Websites that actually work, not just look pretty</h2>
-      <p class="section-lead">
-        Your customers can reserve, book, order, or donate right from their phone. We build websites and systems that are clean on the surface and solid underneath.
-      </p>
-    </header>
-
-    <div class="niche-grid reveal">
-      <article class="niche"><span aria-hidden="true">&#127869;</span><h3>Restaurant Reservations</h3><p>Guests pick their own date, time, and party size. Every booking lands neatly in your dashboard.</p></article>
-      <article class="niche"><span aria-hidden="true">&#128054;</span><h3>Pet Grooming Bookings</h3><p>Online scheduling for grooming or vet clinics, dogs and cats, all organized in one dashboard.</p></article>
-      <article class="niche"><span aria-hidden="true">&#128221;</span><h3>Company Profile &amp; Landing</h3><p>A fast, modern business site that is easy to find on Google.</p></article>
-      <article class="niche"><span aria-hidden="true">&#128722;</span><h3>Catalog &amp; Orders</h3><p>A product catalog where every order drops straight into your dashboard.</p></article>
-      <article class="niche"><span aria-hidden="true">&#128202;</span><h3>Dashboards &amp; Internal Systems</h3><p>Custom systems for your operations, reports, and business data, all in one place.</p></article>
-      <article class="niche"><span aria-hidden="true">&#128179;</span><h3>Payment Integration</h3><p>Online payments like QRIS or virtual accounts, integrated on request when you are ready.</p></article>
-    </div>
-
-    <!-- Live demos + real work -->
-    <div class="demos reveal" id="portfolio">
-      <header class="section-head section-head--left">
-        <p class="eyebrow">Portfolio &amp; Demos</p>
-        <h3>What you can click and verify yourself</h3>
-        <p class="section-lead">Interactive demos you can try right now, plus real systems already running in production.</p>
-      </header>
-
-      <div class="demo-grid">
-        <a class="card-demo card-demo--live" href="demo/reservasi-resto/" target="_blank" rel="noopener">
-          <div class="browser">
-            <div class="browser__bar"><i></i><i></i><i></i><span>demo restaurant reservation</span></div>
-            <div class="browser__shot browser__shot--resto"><span class="demo-badge">Live demo</span></div>
-          </div>
-          <div class="card-demo__body"><h4>Restaurant Reservation System</h4><p>Pick a date, time, and party size. The booking is recorded instantly, ready in the dashboard. Try it yourself.</p><span class="card-demo__go">Open demo &rarr;</span></div>
-        </a>
-
-        <a class="card-demo card-demo--live" href="demo/petcare/" target="_blank" rel="noopener">
-          <div class="browser">
-            <div class="browser__bar"><i></i><i></i><i></i><span>demo grooming booking</span></div>
-            <div class="browser__shot browser__shot--pet"><span class="demo-badge">Live demo</span></div>
-          </div>
-          <div class="card-demo__body"><h4>Pet Grooming Booking</h4><p>Choose a service, schedule, and your pet (dog or cat). It all lands in one dashboard. Try it yourself.</p><span class="card-demo__go">Open demo &rarr;</span></div>
-        </a>
-      </div>
-
-      <header class="section-head section-head--left section-head--tight">
-        <h3>Real systems already in production</h3>
-        <p class="section-lead">A few of the production systems built and maintained by our team.</p>
-      </header>
-
-      <div class="work-grid">
-        <article class="card-work">
-          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>funneling.innovasia.id</span></div><img loading="lazy" src="assets/portfolio/funneling.png" alt="Innovasia Funneling page, an AI-powered donation funnel labeling feature" /></div>
-          <div class="card-work__body"><h4>AI Sales Funnel (Funneling)</h4><p>An AI-powered feature that automatically labels each contact's funnel stage from WhatsApp messages, with a monitoring dashboard.</p><a href="https://funneling.innovasia.id/" target="_blank" rel="noopener">Visit site &rarr;</a></div>
-        </article>
-
-        <article class="card-work">
-          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>onboarding.innovasia.id</span></div><img loading="lazy" src="assets/portfolio/onboarding.png" alt="Innovasia trial signup page, a multi-step onboarding form" /></div>
-          <div class="card-work__body"><h4>Multi-step Onboarding</h4><p>A clean, friendly trial signup flow that guides prospects from profile to contact in a few steps.</p><a href="https://onboarding.innovasia.id/" target="_blank" rel="noopener">Visit site &rarr;</a></div>
-        </article>
-
-        <article class="card-work">
-          <div class="browser"><div class="browser__bar"><i></i><i></i><i></i><span>ziswafhub.com</span></div><img loading="lazy" src="assets/portfolio/ziswafhub.png" alt="ZiswafHub login page, an aggregator platform for Islamic charity services" /></div>
-          <div class="card-work__body"><h4>ZiswafHub</h4><p>An aggregator platform for ZISWAF (zakat, alms, charity, and endowment) with a central portal for institutions and donors.</p><a href="https://ziswafhub.com/" target="_blank" rel="noopener">Visit site &rarr;</a></div>
-        </article>
-      </div>
-    </div>
-
-    <!-- Tech process -->
-    <div class="steps reveal">
-      <h3 class="steps__title">How we work</h3>
-      <ol class="steps__list steps__list--5">
-        <li><span class="steps__n">1</span><div><strong>Talk</strong><p>We understand your problem and goals over WhatsApp.</p></div></li>
-        <li><span class="steps__n">2</span><div><strong>Proposal &amp; estimate</strong><p>Clear scope, timeline, and cost, all up front.</p></div></li>
-        <li><span class="steps__n">3</span><div><strong>Build</strong><p>Built in stages with regular updates, no disappearing.</p></div></li>
-        <li><span class="steps__n">4</span><div><strong>Revise</strong><p>Adjusted until it matches the agreed brief.</p></div></li>
-        <li><span class="steps__n">5</span><div><strong>Handover &amp; support</strong><p>Full access is yours, plus support after launch.</p></div></li>
-      </ol>
-    </div>
-
-    <!-- Tech packages -->
-    <div class="pricing reveal" id="website-packages">
-      <h3 class="pricing__title">Website &amp; system packages</h3>
-      <p class="pricing__note">The prices below are starting estimates. The final number depends on features and complexity, discussed during the consultation. USD shown is approximate.</p>
-      <div class="pricing__grid">
-        <article class="plan">
-          <h4>Landing &amp; Company Profile</h4>
-          <p class="plan__price"><span>from</span> Rp 6,000,000 <em>&asymp; $375</em></p>
-          <ul>
-            <li>One-page website, mobile friendly</li>
-            <li>Custom design (not a generic template)</li>
-            <li>Form or WhatsApp order button</li>
-            <li>Speed &amp; basic SEO optimization</li>
-          </ul>
-          <a class="btn btn--outline" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa, I want a Landing / Company Profile. My business is in:">Choose this package</a>
-        </article>
-
-        <article class="plan plan--popular">
-          <span class="plan__badge">Most Popular</span>
-          <h4>Website + System</h4>
-          <p class="plan__price"><span>from</span> Rp 14,000,000 <em>&asymp; $875</em></p>
-          <ul>
-            <li>Reservations, bookings, or catalog &amp; orders</li>
-            <li>Admin dashboard to manage your data</li>
-            <li>Every booking saved straight to your dashboard</li>
-            <li>Multi-page, mobile friendly</li>
-            <li>A short how-to training session</li>
-          </ul>
-          <a class="btn btn--wa" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa, I want a Website + System (reservation/booking/catalog). My needs are:">Choose this package</a>
-        </article>
-
-        <article class="plan">
-          <h4>Custom System &amp; Integration</h4>
-          <p class="plan__price"><span>from</span> Rp 35,000,000 <em>&asymp; $2,200</em></p>
-          <ul>
-            <li>A system tailored to your specific flow</li>
-            <li>Payment integration (QRIS / VA) on request</li>
-            <li>Integrations with external tools on request</li>
-            <li>Support for large-scale data</li>
-            <li>Maintenance &amp; monitoring</li>
-          </ul>
-          <a class="btn btn--outline" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa, I need a Custom System / Integration. An overview of my needs:">Choose this package</a>
-        </article>
-      </div>
-    </div>
-
-    <div class="track__cta reveal">
-      <a class="btn btn--wa btn--lg" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I want to build a website or system. Can we talk?">
-        <span class="ico-wa" aria-hidden="true"></span> Start your project on WhatsApp
-      </a>
-      <p class="track__cta-note">Let us talk first, free. If it fits, we continue. If not, no problem.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOUNDERS / TRUST ============ -->
-<section class="founders" id="team">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Who is behind Khairasa</p>
-      <h2>A new studio, but not new people</h2>
-      <p class="section-lead">
-        You talk directly to the people doing the work, not a salesperson. One makes sure it is built right, the other makes sure you are taken care of.
-      </p>
-    </header>
-
-    <div class="founder-grid">
-      <article class="founder reveal">
-        <div class="founder__photo"><img src="assets/img/khairi.jpg" alt="Khairi Hibatullah Ridho" loading="lazy" /></div>
-        <div class="founder__body">
-          <h3>Khairi Hibatullah Ridho</h3>
-          <p class="founder__role">Co-founder &amp; Lead Engineer</p>
-          <p class="founder__bio">Makes sure every website and system is built right, secure, and made to last. The type who codes every day, not as a side gig.</p>
-          <ul class="founder__facts">
-            <li>Lead of Technology on a production WhatsApp SaaS serving millions of contacts</li>
-            <li>1,300+ code contributions in a single production codebase</li>
-            <li>Builds billing, payment, AI, and partner-API systems</li>
-            <li>Computer Engineering background, focused on reliability &amp; performance</li>
-          </ul>
-          <div class="founder__links">
-            <a class="founder__link" href="https://github.com/khairihr" target="_blank" rel="noopener">GitHub &rarr;</a>
-            <a class="founder__link" href="https://www.linkedin.com/in/khairihr/" target="_blank" rel="noopener">LinkedIn &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="founder reveal">
-        <div class="founder__photo"><img src="assets/img/zalza.jpg" alt="Zalza Shabila Putri" loading="lazy" /></div>
-        <div class="founder__body">
-          <h3>Zalza Shabila Putri</h3>
-          <p class="founder__role">Co-founder, Creative &amp; Client Experience</p>
-          <p class="founder__bio">Makes sure you are well looked after from start to finish. Reads the flow of an event, stays calm in the middle of the buzz, and sweats the client-experience details.</p>
-          <ul class="founder__facts">
-            <li>Bachelor of Tourism, Cum Laude with a 3.88 GPA</li>
-            <li>BNSP-certified Event Planner</li>
-            <li>Top 2 and Top 3 in national event-planning competitions</li>
-            <li>Finance intern at Sheraton Bandung (Marriott), trained in Figma &amp; front-end</li>
-          </ul>
-          <div class="founder__links">
-            <a class="founder__link" href="https://www.linkedin.com/in/zalza-shabila-putri-bb535a1b6/" target="_blank" rel="noopener">LinkedIn &rarr;</a>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- decorative contribution motif + honest line -->
-    <div class="proof reveal">
-      <div class="proof__graph" aria-hidden="true"><!-- filled by JS: contribution motif --></div>
-      <p class="proof__line">Consistency you can check. Not a promise, a track record.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GUARANTEE ============ -->
-<section class="guarantee">
-  <div class="container">
-    <div class="guarantee__card reveal">
-      <p class="eyebrow eyebrow--invert">Our guarantee</p>
-      <h2>The risk is on us, not on you</h2>
-      <div class="guarantee__grid">
-        <div><span aria-hidden="true">&#10003;</span><h3>Revisions until it is right</h3><p>We refine it until the result matches the agreed brief.</p></div>
-        <div><span aria-hidden="true">&#10003;</span><h3>Initial concept off the mark? Deposit back</h3><p>If the first concept is far from what we agreed, we return your deposit.</p></div>
-        <div><span aria-hidden="true">&#10003;</span><h3>Wedding timelines never slip</h3><p>For the big day, the teaser and reels arrive exactly as promised. On time.</p></div>
-      </div>
-      <p class="guarantee__more"><a href="service/" target="_blank" rel="noopener">Read our full service terms &amp; SLA &rarr;</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
+<!-- ============ SHARED FAQ ============ -->
 <section class="faq" id="faq">
   <div class="container container--narrow">
     <header class="section-head reveal">
-      <p class="eyebrow">Questions people often ask</p>
-      <h2>Still unsure? That is fair.</h2>
+      <p class="eyebrow">Quick questions</p>
+      <h2>Before you reach out</h2>
     </header>
-
     <div class="faq__list reveal">
       <details class="faq__item">
-        <summary>You are new, why should I trust you?</summary>
-        <div class="faq__a"><p>The studio is new, but the people are not. You can check our track record directly: thousands of code contributions in production systems, real certifications, and real achievements. On top of that, there is a revision guarantee and a deposit refund if the initial concept does not fit.</p></div>
+        <summary>You are a new studio, why should I trust you?</summary>
+        <div class="faq__a"><p>The studio is new, the people are not. You talk directly to the founders: a Cum Laude, BNSP-certified event planner, and a lead engineer with 1,300+ contributions to a production SaaS serving millions. Plus a clear guarantee: revisions until it is right, and a deposit-back if the first concept misses.</p></div>
       </details>
       <details class="faq__item">
-        <summary>How is a wedding content creator different from a regular videographer?</summary>
-        <div class="faq__a"><p>A videographer focuses on formal, long-form cinematic documentation. We focus on social-media content: short, candid, fast reels (same-day edits), ready to post on Instagram and TikTok. The two complement each other, they do not replace one another.</p></div>
+        <summary>How do I get started?</summary>
+        <div class="faq__a"><p>Message us on WhatsApp (or email Khairasagroup@gmail.com). Tell us your wedding date or your business idea, we reply fast, and the first conversation is free with no pressure.</p></div>
       </details>
       <details class="faq__item">
-        <summary>How long does a website or system take?</summary>
-        <div class="faq__a"><p>A landing page usually takes 1 to 2 weeks. A website with a system (reservations, bookings, catalog) takes around 3 to 6 weeks, depending on the features. We give a firm estimate in the proposal after we talk.</p></div>
+        <summary>Do you work remotely and internationally?</summary>
+        <div class="faq__a"><p>Yes. We are based in Cirebon and Bandung for weddings and on-site work, and we build websites and systems for clients anywhere, fully remote.</p></div>
       </details>
       <details class="faq__item">
-        <summary>How long until the wedding reels are ready?</summary>
-        <div class="faq__a"><p>A teaser can be ready the same day (same-day edit). The full reels are delivered within 24 to 48 hours, while the moment is still fresh to share.</p></div>
-      </details>
-      <details class="faq__item">
-        <summary>Do I get full access to the source code and domain?</summary>
-        <div class="faq__a"><p>Yes. After handover, full access to the code, domain, and hosting accounts is yours. Nothing is locked, and there is no forced dependency on us.</p></div>
-      </details>
-      <details class="faq__item">
-        <summary>How do deposits and payments work?</summary>
-        <div class="faq__a"><p>Usually a deposit up front to secure the schedule, then the balance on handover. The scheme can be adjusted and is discussed openly up front, with no hidden costs.</p></div>
-      </details>
-      <details class="faq__item">
-        <summary>Is there support after the website launches?</summary>
-        <div class="faq__a"><p>Yes. We provide a support period after launch for fixes and questions. For long-term maintenance, that can be arranged separately.</p></div>
-      </details>
-      <details class="faq__item">
-        <summary>What areas do you cover for weddings?</summary>
-        <div class="faq__a"><p>We are based in Cirebon and Bandung, and open to nearby areas and other cities. Tell us your location on WhatsApp and we will sort out the logistics.</p></div>
+        <summary>Where can I see pricing?</summary>
+        <div class="faq__a"><p>Starting prices for each service are on the <a href="wedding/#packages">Wedding</a> and <a href="website/#packages">Websites</a> pages. Final numbers depend on your needs and are confirmed in the chat.</p></div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ============ CLOSING CTA ============ -->
+<!-- ============ CLOSING ============ -->
 <section class="closing" id="contact">
   <div class="container">
     <div class="closing__inner reveal">
@@ -576,16 +231,15 @@
     <div class="footer__cols">
       <div>
         <h4>Services</h4>
-        <a href="#wedding">Wedding Content</a>
-        <a href="#website">Websites &amp; Systems</a>
-        <a href="#portfolio">Portfolio &amp; Demos</a>
+        <a href="wedding/">Wedding Content</a>
+        <a href="website/">Websites &amp; Systems</a>
+        <a href="website/#portfolio">Portfolio &amp; Demos</a>
       </div>
       <div>
         <h4>Studio</h4>
         <a href="about/">About</a>
         <a href="service/">Service &amp; SLA</a>
-        <a href="#team">Team</a>
-        <a href="#faq">FAQ</a>
+        <a href="https://github.com/khairihr" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div>
         <h4>Contact</h4>
@@ -603,7 +257,6 @@
   </div>
 </footer>
 
-<!-- Floating WhatsApp (sticky) -->
 <a class="wa-fab" href="https://wa.me/6285121525015" data-wa-text="Hi Khairasa Studio, I would like a free consultation." aria-label="Chat on WhatsApp">
   <span class="ico-wa" aria-hidden="true"></span>
   <span class="wa-fab__label">Chat on WhatsApp</span>
