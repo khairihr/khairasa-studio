@@ -40,7 +40,8 @@
     .chip span { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: var(--pill); padding: 9px 16px; font-size: .9rem; font-weight: 600; color: var(--ink-soft); box-shadow: var(--sh-sm); }
     .chip span::before { content: "\2713"; color: var(--wa-dark); font-weight: 800; }
     .hubtrust__line { font-family: "Fraunces", serif; font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--blue-deep); }
-    .hubtrust__line a { color: var(--blue); font-style: normal; font-weight: 700; border-bottom: 1px solid var(--blue); }
+    .hubtrust__cta { display: inline-block; margin-top: 16px; font-family: "Plus Jakarta Sans", sans-serif; font-style: normal; font-size: 1rem; color: var(--blue); font-weight: 700; border-bottom: 1px solid var(--blue); padding-bottom: 2px; transition: color .2s; }
+    .hubtrust__cta:hover { color: var(--blue-bright); }
   </style>
 
   <script type="application/ld+json">
@@ -166,7 +167,8 @@
       <span>Deposit back if the concept misses</span>
       <span>On-time wedding delivery</span>
     </div>
-    <p class="hubtrust__line">One studio, two crafts. No junior handoff, no agency markup. <a href="about/">Meet the founders &rarr;</a></p>
+    <p class="hubtrust__line">One studio, two crafts. No junior handoff, no agency markup.</p>
+    <a class="hubtrust__cta" href="about/">Meet the founders &rarr;</a>
   </div>
 </section>
 
