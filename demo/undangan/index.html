@@ -72,6 +72,11 @@
   .bar{height:7px;border-radius:999px;background:var(--panel);overflow:hidden;margin-bottom:6px}
   .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blush),var(--gold))}
   .gift__meta{font-size:.74rem;color:var(--muted);margin-bottom:10px;line-height:1.4}
+  .gift{position:relative}
+  .gift__badge{position:absolute;top:10px;left:10px;z-index:2;background:rgba(40,30,28,.82);color:#fff;font-size:.72rem;font-weight:700;padding:5px 11px;border-radius:999px}
+  .gift--done img{filter:grayscale(.35) opacity(.72)}
+  .gift--done .btn-gold{opacity:.55}
+  .priv{font-size:.82rem;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;max-width:520px;margin:14px auto 0;text-align:center}
   .gift .btn-gold{width:100%;justify-content:center;margin-top:auto;padding:9px;font-size:.85rem}
   .gift.is-done .btn-gold{background:var(--ok);pointer-events:none}
 
@@ -181,6 +186,7 @@
       <div class="orn" aria-hidden="true">&#127873;</div>
       <h2>Kirim Kado</h2>
       <p>Doa restu Anda adalah hadiah terindah. Namun bila ingin memberi tanda kasih, Anda bisa memilih kado dari daftar kami, atau cukup mengirim uang.</p>
+      <p class="priv">&#128274; Alamat pengantin disembunyikan demi privasi. Kami yang membelikan &amp; mengirimkan kadonya sampai ke depan pintu.</p>
     </div>
 
     <div class="tabs">
@@ -197,7 +203,8 @@
         <button class="sortbtn" data-sort="high">Termahal</button>
       </div>
       <div class="gift-grid" id="giftGrid">
-        <article class="gift" data-price="359000">
+        <article class="gift gift--done" data-price="359000">
+          <span class="gift__badge">Sudah dihadiahkan</span>
           <img src="../../assets/img/demo/undangan/oven.jpg" alt="Oven listrik" loading="lazy" />
           <div class="gift__b">
             <h3>Mecoo Electric Oven 22 Liter</h3>

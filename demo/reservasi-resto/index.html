@@ -89,6 +89,10 @@
   footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
   footer a{color:var(--gold-soft);text-decoration:underline;text-underline-offset:2px}
   .hidden{display:none}
+  button{font-family:inherit;color:inherit}
+  .confirm{animation:popIn .45s cubic-bezier(.22,.61,.36,1)}
+  @keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.confirm{animation:none}}
 
   @media(max-width:780px){
     .amb__grid{grid-template-columns:1fr}
