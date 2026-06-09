@@ -59,16 +59,20 @@
   .tabs{display:flex;justify-content:center;gap:10px;margin-bottom:30px}
   .tab{padding:11px 22px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);font-weight:700;font-size:.95rem;color:var(--ink);cursor:pointer;transition:.18s}
   .tab.is-active{background:var(--gold);color:#fff;border-color:var(--gold)}
-  .gift-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  .giftbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+  .giftbar span{font-size:.82rem;color:var(--muted);font-weight:600}
+  .sortbtn{padding:7px 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font-weight:600;font-size:.82rem;cursor:pointer;font-family:inherit;transition:.15s}
+  .sortbtn.is-active{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .gift-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .gift{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 26px rgba(60,40,30,.06);display:flex;flex-direction:column}
   .gift img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#f2ece2}
-  .gift__b{padding:18px;display:flex;flex-direction:column;flex:1}
-  .gift__b h3{font-size:1.15rem;font-family:"Plus Jakarta Sans";font-weight:700;line-height:1.3}
-  .gift__price{color:var(--gold-deep);font-weight:700;margin:4px 0 12px}
+  .gift__b{padding:14px;display:flex;flex-direction:column;flex:1}
+  .gift__b h3{font-size:1rem;font-family:"Plus Jakarta Sans";font-weight:700;line-height:1.3}
+  .gift__price{color:var(--gold-deep);font-weight:700;font-size:.95rem;margin:4px 0 10px}
   .bar{height:7px;border-radius:999px;background:var(--panel);overflow:hidden;margin-bottom:6px}
   .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blush),var(--gold))}
-  .gift__meta{font-size:.8rem;color:var(--muted);margin-bottom:14px}
-  .gift .btn-gold{width:100%;justify-content:center;margin-top:auto;padding:11px}
+  .gift__meta{font-size:.74rem;color:var(--muted);margin-bottom:10px;line-height:1.4}
+  .gift .btn-gold{width:100%;justify-content:center;margin-top:auto;padding:9px;font-size:.85rem}
   .gift.is-done .btn-gold{background:var(--ok);pointer-events:none}
 
   .cashbox{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,4vw,36px);text-align:center;box-shadow:0 12px 30px rgba(60,40,30,.07)}
@@ -133,7 +137,7 @@
   footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
   footer a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px}
 
-  @media(max-width:760px){.gift-grid{grid-template-columns:1fr;max-width:380px;margin-inline:auto}}
+  @media(max-width:420px){.gift__b{padding:11px}.gift__b h3{font-size:.92rem}.gift .btn-gold{font-size:.8rem}}
 </style>
 </head>
 <body>
@@ -186,18 +190,24 @@
 
     <!-- GIFT ITEMS -->
     <div id="tab-gift">
-      <div class="gift-grid">
-        <article class="gift">
+      <div class="giftbar">
+        <span>Urutkan harga:</span>
+        <button class="sortbtn is-active" data-sort="default">Semua</button>
+        <button class="sortbtn" data-sort="low">Termurah</button>
+        <button class="sortbtn" data-sort="high">Termahal</button>
+      </div>
+      <div class="gift-grid" id="giftGrid">
+        <article class="gift" data-price="359000">
           <img src="../../assets/img/demo/undangan/oven.jpg" alt="Oven listrik" loading="lazy" />
           <div class="gift__b">
             <h3>Mecoo Electric Oven 22 Liter</h3>
             <p class="gift__price">Rp 359.000</p>
             <div class="bar"><i style="width:100%"></i></div>
-            <p class="gift__meta">Sudah terpenuhi, terima kasih &#128153;</p>
+            <p class="gift__meta">Sudah terpenuhi &#128153;</p>
             <button class="btn-gold" disabled>Sudah dihadiahkan</button>
           </div>
         </article>
-        <article class="gift">
+        <article class="gift" data-price="189000">
           <img src="../../assets/img/demo/undangan/iron.jpg" alt="Setrika Philips" loading="lazy" />
           <div class="gift__b">
             <h3>Philips Setrika Afinia GC160</h3>
@@ -207,13 +217,13 @@
             <button class="btn-gold" data-gift="Philips Setrika Afinia GC160" data-price="189.000">Hadiahkan ini</button>
           </div>
         </article>
-        <article class="gift">
+        <article class="gift" data-price="3499000">
           <img src="../../assets/img/demo/undangan/table.jpg" alt="Meja makan marmer" loading="lazy" />
           <div class="gift__b">
             <h3>Dekoruma YORI Meja Makan Marble</h3>
             <p class="gift__price">Rp 3.499.000</p>
             <div class="bar"><i style="width:45%"></i></div>
-            <p class="gift__meta">Patungan: Rp 1.575.000 dari Rp 3.499.000</p>
+            <p class="gift__meta">Patungan: Rp 1.575.000 / Rp 3.499.000</p>
             <button class="btn-gold" data-gift="Dekoruma YORI Meja Makan Marble" data-price="3.499.000">Ikut patungan</button>
           </div>
         </article>
@@ -356,6 +366,22 @@
       openModal({ title:"Hadiahkan: "+b.getAttribute("data-gift"), sub:"Harga Rp "+b.getAttribute("data-price")+". Kami yang membelikan & mengirim ke pengantin.", cash:false });
     });
   });
+  // sort gifts by price
+  var giftGrid=document.getElementById("giftGrid");
+  if(giftGrid){
+    var original=Array.prototype.slice.call(giftGrid.children);
+    document.querySelectorAll(".sortbtn").forEach(function(b){
+      b.addEventListener("click",function(){
+        document.querySelectorAll(".sortbtn").forEach(function(x){x.classList.remove("is-active");});
+        b.classList.add("is-active");
+        var s=b.getAttribute("data-sort"), arr=original.slice();
+        if(s==="low") arr.sort(function(a,c){return (+a.getAttribute("data-price"))-(+c.getAttribute("data-price"));});
+        else if(s==="high") arr.sort(function(a,c){return (+c.getAttribute("data-price"))-(+a.getAttribute("data-price"));});
+        arr.forEach(function(el){giftGrid.appendChild(el);});
+      });
+    });
+  }
+
   // cash amount chips
   var chosenAmt="";
   document.querySelectorAll(".amt").forEach(function(a){
@@ -390,7 +416,7 @@
       : "Kado Anda akan kami belikan dan kirim ke pengantin. Kode: "+ref;
     document.getElementById("okNote").textContent = mode==="cash"
       ? "Di versi asli, uang masuk langsung ke rekening pengantin via "+chosenPay+". Ini hanya simulasi."
-      : "Lacak status kado dengan kode "+ref+" di bagian Cek Status Kado. Pembayaran via "+chosenPay+" (simulasi).";
+      : "Resi belum ada sekarang, ya. Kami belikan & kirim dulu (1 sampai 3 hari), lalu nomor resi muncul di Cek Status Kado dengan kode "+ref+". Pembayaran via "+chosenPay+" (simulasi).";
     mForm.classList.add("hidden"); mOk.classList.remove("hidden");
   });
 
