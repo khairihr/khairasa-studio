@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Andi &amp; Bunga | Undangan &amp; Kado Demo</title>
+<meta name="description" content="A digital wedding invitation + gift registry demo built by Khairasa Studio. Guests pick a gift or give cash, pay by QRIS/VA/transfer, and the couple can track gifts." />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="../../assets/img/favicon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fbf6ef; --panel:#f5ece0; --card:#ffffff;
+    --blush:#e7c9c2; --gold:#c0a062; --gold-deep:#9c7f48; --rose:#b07c74;
+    --ink:#3b3330; --muted:#8a7f76; --line:#ece0cf; --ok:#5fa372;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:.01em}
+  .wrap{width:100%;max-width:960px;margin:0 auto;padding-inline:clamp(18px,5vw,32px)}
+  .script{font-family:"Cormorant Garamond",serif;font-style:italic}
+
+  .demobar{position:relative;z-index:60;background:#3158A7;color:#fff;font-size:.8rem;text-align:center;padding:8px 16px;font-weight:600}
+  .demobar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+
+  /* cover */
+  .cover{position:relative;min-height:90vh;display:grid;place-items:center;text-align:center;overflow:hidden}
+  .cover__bg{position:absolute;inset:0;background:linear-gradient(rgba(40,30,28,.45),rgba(40,30,28,.65)),url("../../assets/img/wedding/reel-2.jpg") center/cover}
+  .cover__in{position:relative;color:#fff;padding:60px 24px}
+  .cover .eyebrow{letter-spacing:.34em;text-transform:uppercase;font-size:.72rem;margin-bottom:18px;opacity:.9}
+  .cover h1{font-size:clamp(3rem,11vw,6rem);line-height:1}
+  .cover .amp{font-style:italic;color:var(--blush)}
+  .cover__date{margin:16px 0 28px;font-size:1.05rem;letter-spacing:.04em;opacity:.95}
+  .btn-gold{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#fff;font-weight:700;padding:14px 30px;border-radius:999px;font-size:1rem;border:0;cursor:pointer;transition:.25s;font-family:inherit}
+  .btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
+
+  section{padding:clamp(50px,8vw,90px) 0}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto clamp(28px,4vw,44px)}
+  .sec-head .orn{color:var(--gold);font-size:1.4rem;margin-bottom:10px}
+  .sec-head h2{font-size:clamp(2rem,5vw,3rem)}
+  .sec-head p{color:var(--muted);margin-top:10px}
+
+  /* intro / countdown */
+  .intro{background:var(--panel);text-align:center}
+  .intro p{max-width:54ch;margin:0 auto;color:var(--ink)}
+  .countdown{display:flex;justify-content:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .cd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 10px;min-width:78px;box-shadow:0 8px 20px rgba(60,40,30,.05)}
+  .cd b{display:block;font-family:"Cormorant Garamond",serif;font-size:2rem;color:var(--gold-deep);line-height:1}
+  .cd span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+
+  /* registry */
+  .tabs{display:flex;justify-content:center;gap:10px;margin-bottom:30px}
+  .tab{padding:11px 22px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);font-weight:700;font-size:.95rem;color:var(--ink);cursor:pointer;transition:.18s}
+  .tab.is-active{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .gift-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .gift{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 26px rgba(60,40,30,.06);display:flex;flex-direction:column}
+  .gift img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#f2ece2}
+  .gift__b{padding:18px;display:flex;flex-direction:column;flex:1}
+  .gift__b h3{font-size:1.15rem;font-family:"Plus Jakarta Sans";font-weight:700;line-height:1.3}
+  .gift__price{color:var(--gold-deep);font-weight:700;margin:4px 0 12px}
+  .bar{height:7px;border-radius:999px;background:var(--panel);overflow:hidden;margin-bottom:6px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blush),var(--gold))}
+  .gift__meta{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+  .gift .btn-gold{width:100%;justify-content:center;margin-top:auto;padding:11px}
+  .gift.is-done .btn-gold{background:var(--ok);pointer-events:none}
+
+  .cashbox{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,4vw,36px);text-align:center;box-shadow:0 12px 30px rgba(60,40,30,.07)}
+  .cashbox h3{font-size:1.6rem}
+  .amts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0}
+  .amt{padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:var(--panel);cursor:pointer;font-weight:700;transition:.15s}
+  .amt:hover,.amt.is-active{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .hidden{display:none}
+
+  /* tracking */
+  .track{background:var(--panel)}
+  .trackbox{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,4vw,34px);box-shadow:0 12px 30px rgba(60,40,30,.06)}
+  .trackrow{display:flex;gap:10px;flex-wrap:wrap}
+  .trackrow input{flex:1;min-width:180px;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;font:inherit;color:var(--ink)}
+  .trackrow input:focus{outline:0;border-color:var(--gold)}
+  .timeline{margin-top:24px;display:none}
+  .timeline.show{display:block}
+  .step{display:flex;gap:14px;padding-bottom:18px;position:relative}
+  .step:not(:last-child)::before{content:"";position:absolute;left:11px;top:26px;bottom:0;width:2px;background:var(--line)}
+  .step .dot{width:24px;height:24px;border-radius:50%;background:var(--line);color:#fff;display:grid;place-items:center;font-size:.8rem;flex:none;z-index:1}
+  .step.done .dot{background:var(--ok)}
+  .step.current .dot{background:var(--gold)}
+  .step b{font-family:"Plus Jakarta Sans";font-size:.98rem}
+  .step span{display:block;color:var(--muted);font-size:.86rem}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:80;background:rgba(40,30,28,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal__card{background:var(--card);border-radius:22px;max-width:460px;width:100%;padding:clamp(24px,4vw,34px);max-height:90vh;overflow:auto;box-shadow:0 30px 70px rgba(40,30,28,.4)}
+  .modal__card h3{font-size:1.6rem}
+  .modal__sub{color:var(--muted);font-size:.92rem;margin-bottom:18px}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .field label{font-size:.82rem;font-weight:700}
+  .field input,.field textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;color:var(--ink)}
+  .field input:focus,.field textarea:focus{outline:0;border-color:var(--gold)}
+  .field textarea{resize:none;min-height:64px;overflow:hidden}
+  .pays{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+  .pay{padding:9px 15px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);cursor:pointer;font-weight:600;font-size:.9rem;transition:.15s}
+  .pay.is-active{border-color:var(--gold);background:#fbf2e2;color:var(--gold-deep)}
+  .qris{margin:14px 0;text-align:center;display:none}
+  .qris.show{display:block}
+  .qris__box{width:170px;height:170px;margin:0 auto 8px;border-radius:14px;background:
+    repeating-linear-gradient(0deg,#2b2b2b 0 8px,transparent 8px 16px),
+    repeating-linear-gradient(90deg,#2b2b2b 0 8px,transparent 8px 16px);
+    background-color:#fff;border:6px solid #fff;box-shadow:0 0 0 1px var(--line);opacity:.85}
+  .qris small{color:var(--muted)}
+  .modal .btn-gold{width:100%;justify-content:center;margin-top:8px}
+  .modal__close{float:right;font-size:1.4rem;color:var(--muted);cursor:pointer;line-height:1;border:0;background:none}
+  .modal__ok{text-align:center}
+  .modal__ok .chk{width:60px;height:60px;border-radius:50%;background:rgba(95,163,114,.14);color:var(--ok);display:grid;place-items:center;font-size:1.8rem;margin:0 auto 14px}
+  .modal__note{font-size:.82rem;color:var(--muted);background:var(--panel);border-radius:12px;padding:12px 14px;margin-top:6px}
+
+  /* music */
+  .music{position:fixed;left:16px;bottom:16px;z-index:70;width:50px;height:50px;border-radius:50%;background:var(--gold);color:#fff;border:0;cursor:pointer;display:grid;place-items:center;box-shadow:0 8px 22px rgba(192,160,98,.5);font-size:1.2rem}
+  .music.spin{animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+  footer a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px}
+
+  @media(max-width:760px){.gift-grid{grid-template-columns:1fr;max-width:380px;margin-inline:auto}}
+</style>
+</head>
+<body>
+
+<div class="demobar">Live demo built by <a href="../../">Khairasa Studio</a>. A digital invitation + gift registry. Everything here is simulated (no real payment).</div>
+
+<audio id="bgm" loop preload="none" src="../../assets/audio/song.mp3"></audio>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover__bg" aria-hidden="true"></div>
+  <div class="cover__in">
+    <p class="eyebrow">The Wedding Of</p>
+    <h1>Andi <span class="amp">&amp;</span> Bunga</h1>
+    <p class="cover__date">Sabtu, 12 September 2026 &middot; Bandung</p>
+    <button class="btn-gold" id="openBtn">&#9834; Buka Undangan</button>
+  </div>
+</section>
+
+<main id="content">
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap">
+    <div class="sec-head"><div class="orn" aria-hidden="true">&#10047;</div><h2>Dengan memohon rahmat Tuhan</h2></div>
+    <p>Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir dan memberikan doa restu di hari bahagia kami. Kehadiran Anda adalah kebahagiaan bagi kami.</p>
+    <div class="countdown" id="countdown" aria-label="Hitung mundur">
+      <div class="cd"><b id="cd-d">0</b><span>Hari</span></div>
+      <div class="cd"><b id="cd-h">0</b><span>Jam</span></div>
+      <div class="cd"><b id="cd-m">0</b><span>Menit</span></div>
+      <div class="cd"><b id="cd-s">0</b><span>Detik</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT REGISTRY -->
+<section class="registry">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="orn" aria-hidden="true">&#127873;</div>
+      <h2>Kirim Kado</h2>
+      <p>Doa restu Anda adalah hadiah terindah. Namun bila ingin memberi tanda kasih, Anda bisa memilih kado dari daftar kami, atau cukup mengirim uang.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab is-active" data-tab="gift">Pilih Kado</button>
+      <button class="tab" data-tab="cash">Kirim Uang</button>
+    </div>
+
+    <!-- GIFT ITEMS -->
+    <div id="tab-gift">
+      <div class="gift-grid">
+        <article class="gift">
+          <img src="../../assets/img/demo/undangan/oven.jpg" alt="Oven listrik" loading="lazy" />
+          <div class="gift__b">
+            <h3>Mecoo Electric Oven 22 Liter</h3>
+            <p class="gift__price">Rp 359.000</p>
+            <div class="bar"><i style="width:100%"></i></div>
+            <p class="gift__meta">Sudah terpenuhi, terima kasih &#128153;</p>
+            <button class="btn-gold" disabled>Sudah dihadiahkan</button>
+          </div>
+        </article>
+        <article class="gift">
+          <img src="../../assets/img/demo/undangan/iron.jpg" alt="Setrika Philips" loading="lazy" />
+          <div class="gift__b">
+            <h3>Philips Setrika Afinia GC160</h3>
+            <p class="gift__price">Rp 189.000</p>
+            <div class="bar"><i style="width:0%"></i></div>
+            <p class="gift__meta">Belum ada yang memberi</p>
+            <button class="btn-gold" data-gift="Philips Setrika Afinia GC160" data-price="189.000">Hadiahkan ini</button>
+          </div>
+        </article>
+        <article class="gift">
+          <img src="../../assets/img/demo/undangan/table.jpg" alt="Meja makan marmer" loading="lazy" />
+          <div class="gift__b">
+            <h3>Dekoruma YORI Meja Makan Marble</h3>
+            <p class="gift__price">Rp 3.499.000</p>
+            <div class="bar"><i style="width:45%"></i></div>
+            <p class="gift__meta">Patungan: Rp 1.575.000 dari Rp 3.499.000</p>
+            <button class="btn-gold" data-gift="Dekoruma YORI Meja Makan Marble" data-price="3.499.000">Ikut patungan</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- CASH -->
+    <div id="tab-cash" class="hidden">
+      <div class="cashbox">
+        <h3>Kirim Uang (Amplop Digital)</h3>
+        <p style="color:var(--muted);margin-top:6px">Pilih nominal, atau isi sendiri. Disertai ucapan untuk pengantin.</p>
+        <div class="amts" id="amts">
+          <button class="amt" data-amt="100.000">Rp 100rb</button>
+          <button class="amt" data-amt="200.000">Rp 200rb</button>
+          <button class="amt" data-amt="500.000">Rp 500rb</button>
+          <button class="amt" data-amt="1.000.000">Rp 1jt</button>
+        </div>
+        <button class="btn-gold" id="cashBtn" style="width:100%;justify-content:center">Lanjut kirim uang</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKING -->
+<section class="track">
+  <div class="wrap">
+    <div class="sec-head"><div class="orn" aria-hidden="true">&#128230;</div><h2>Cek Status Kado</h2><p>Sudah memberi kado barang? Lacak apakah sudah sampai ke pengantin.</p></div>
+    <div class="trackbox">
+      <div class="trackrow">
+        <input type="text" id="trackInput" placeholder="Masukkan kode kado, mis. KADO-1234" />
+        <button class="btn-gold" id="trackBtn">Lacak</button>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="step done"><span class="dot">&#10003;</span><div><b>Pesanan diproses</b><span>Kado dikonfirmasi oleh Khairasa Studio</span></div></div>
+        <div class="step done"><span class="dot">&#10003;</span><div><b>Kado dibeli</b><span>Dibelikan di Shopee oleh tim kami</span></div></div>
+        <div class="step current"><span class="dot">&#8594;</span><div><b>Dalam pengiriman</b><span>Resi JNE: 0123456789 &middot; menuju alamat pengantin</span></div></div>
+        <div class="step"><span class="dot"></span><div><b>Sampai ke pengantin</b><span>Belum sampai</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Demo undangan + kado oleh <a href="../../">Khairasa Studio</a>. Pembayaran &amp; produk hanya simulasi.
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal__card">
+    <button class="modal__close" id="modalClose" aria-label="Tutup">&times;</button>
+    <div id="modalForm">
+      <h3 id="mTitle">Hadiahkan</h3>
+      <p class="modal__sub" id="mSub"></p>
+      <div class="field"><label for="mName">Nama Anda</label><input id="mName" placeholder="Nama pemberi" /></div>
+      <div class="field" id="mAmtField" style="display:none"><label for="mAmt">Nominal (Rp)</label><input id="mAmt" inputmode="numeric" placeholder="mis. 200.000" /></div>
+      <div class="field"><label for="mMsg">Ucapan untuk pengantin (opsional)</label><textarea id="mMsg" placeholder="Selamat menempuh hidup baru..."></textarea></div>
+      <label style="font-size:.82rem;font-weight:700;display:block;margin-bottom:8px">Metode pembayaran</label>
+      <div class="pays" id="pays">
+        <button class="pay is-active" data-pay="QRIS">QRIS</button>
+        <button class="pay" data-pay="Virtual Account">Virtual Account</button>
+        <button class="pay" data-pay="Transfer Bank">Transfer Bank</button>
+      </div>
+      <div class="qris show" id="qris"><div class="qris__box" aria-hidden="true"></div><small>Scan untuk membayar (simulasi)</small></div>
+      <button class="btn-gold" id="payBtn">Selesaikan pembayaran</button>
+      <p class="err" id="mErr" style="color:var(--rose);font-size:.84rem;min-height:1.1em;margin-top:8px"></p>
+    </div>
+    <div id="modalOk" class="modal__ok hidden">
+      <div class="chk" aria-hidden="true">&#10003;</div>
+      <h3>Terima kasih, <span id="okName">Sahabat</span>!</h3>
+      <p style="color:var(--muted);margin:8px 0" id="okMsg"></p>
+      <div class="modal__note" id="okNote"></div>
+      <button class="btn-gold" id="okClose" style="width:100%;justify-content:center;margin-top:16px">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<button class="music" id="music" aria-label="Putar musik">&#9834;</button>
+
+<script>
+(function(){
+  var bgm=document.getElementById("bgm"), music=document.getElementById("music");
+  // open invitation: scroll + play music (counts as user interaction so autoplay is allowed)
+  document.getElementById("openBtn").addEventListener("click",function(){
+    document.getElementById("content").scrollIntoView({behavior:"smooth"});
+    playMusic();
+  });
+  function playMusic(){ if(!bgm.src) return; bgm.play().then(function(){ music.classList.add("spin"); }).catch(function(){}); }
+  music.addEventListener("click",function(){
+    if(bgm.paused){ playMusic(); } else { bgm.pause(); music.classList.remove("spin"); }
+  });
+
+  // countdown to 2026-09-12
+  var target=new Date("2026-09-12T08:00:00+07:00").getTime();
+  function tick(){
+    var now=Date.now(), d=Math.max(0,target-now);
+    var dd=Math.floor(d/864e5), hh=Math.floor(d%864e5/36e5), mm=Math.floor(d%36e5/6e4), ss=Math.floor(d%6e4/1e3);
+    document.getElementById("cd-d").textContent=dd;
+    document.getElementById("cd-h").textContent=hh;
+    document.getElementById("cd-m").textContent=mm;
+    document.getElementById("cd-s").textContent=ss;
+  }
+  tick(); setInterval(tick,1000);
+
+  // tabs
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click",function(){
+      document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("is-active");});
+      t.classList.add("is-active");
+      var isGift=t.getAttribute("data-tab")==="gift";
+      document.getElementById("tab-gift").classList.toggle("hidden",!isGift);
+      document.getElementById("tab-cash").classList.toggle("hidden",isGift);
+    });
+  });
+
+  // modal
+  var modal=document.getElementById("modal"), mForm=document.getElementById("modalForm"), mOk=document.getElementById("modalOk");
+  var mTitle=document.getElementById("mTitle"), mSub=document.getElementById("mSub"), mAmtField=document.getElementById("mAmtField"), mErr=document.getElementById("mErr");
+  var mode="gift", chosenPay="QRIS";
+  function openModal(opts){
+    mForm.classList.remove("hidden"); mOk.classList.add("hidden");
+    mErr.textContent=""; document.getElementById("mName").value=""; document.getElementById("mMsg").value=""; document.getElementById("mAmt").value="";
+    mTitle.textContent=opts.title; mSub.textContent=opts.sub;
+    mAmtField.style.display = opts.cash ? "flex" : "none";
+    if(opts.amt) document.getElementById("mAmt").value=opts.amt;
+    mode=opts.cash?"cash":"gift";
+    modal.classList.add("open");
+  }
+  function closeModal(){ modal.classList.remove("open"); }
+  document.getElementById("modalClose").addEventListener("click",closeModal);
+  document.getElementById("okClose").addEventListener("click",closeModal);
+  modal.addEventListener("click",function(e){ if(e.target===modal) closeModal(); });
+
+  // gift buttons
+  document.querySelectorAll("[data-gift]").forEach(function(b){
+    b.addEventListener("click",function(){
+      openModal({ title:"Hadiahkan: "+b.getAttribute("data-gift"), sub:"Harga Rp "+b.getAttribute("data-price")+". Kami yang membelikan & mengirim ke pengantin.", cash:false });
+    });
+  });
+  // cash amount chips
+  var chosenAmt="";
+  document.querySelectorAll(".amt").forEach(function(a){
+    a.addEventListener("click",function(){
+      document.querySelectorAll(".amt").forEach(function(x){x.classList.remove("is-active");});
+      a.classList.add("is-active"); chosenAmt=a.getAttribute("data-amt");
+    });
+  });
+  document.getElementById("cashBtn").addEventListener("click",function(){
+    openModal({ title:"Kirim Uang", sub:"Amplop digital untuk pengantin.", cash:true, amt:chosenAmt });
+  });
+
+  // payment method
+  var qris=document.getElementById("qris");
+  document.querySelectorAll(".pay").forEach(function(p){
+    p.addEventListener("click",function(){
+      document.querySelectorAll(".pay").forEach(function(x){x.classList.remove("is-active");});
+      p.classList.add("is-active"); chosenPay=p.getAttribute("data-pay");
+      qris.classList.toggle("show",chosenPay==="QRIS");
+    });
+  });
+
+  // pay submit
+  document.getElementById("payBtn").addEventListener("click",function(){
+    var name=document.getElementById("mName").value.trim();
+    if(!name){ mErr.textContent="Mohon isi nama Anda."; return; }
+    if(mode==="cash" && !document.getElementById("mAmt").value.trim()){ mErr.textContent="Mohon isi nominal."; return; }
+    var ref=(mode==="cash"?"AMPLOP-":"KADO-")+Math.floor(1000+Math.random()*9000);
+    document.getElementById("okName").textContent=name;
+    document.getElementById("okMsg").textContent = mode==="cash"
+      ? "Amplop digital Anda diteruskan ke pengantin. Kode: "+ref
+      : "Kado Anda akan kami belikan dan kirim ke pengantin. Kode: "+ref;
+    document.getElementById("okNote").textContent = mode==="cash"
+      ? "Di versi asli, uang masuk langsung ke rekening pengantin via "+chosenPay+". Ini hanya simulasi."
+      : "Lacak status kado dengan kode "+ref+" di bagian Cek Status Kado. Pembayaran via "+chosenPay+" (simulasi).";
+    mForm.classList.add("hidden"); mOk.classList.remove("hidden");
+  });
+
+  // tracking
+  document.getElementById("trackBtn").addEventListener("click",function(){
+    document.getElementById("timeline").classList.add("show");
+  });
+  document.getElementById("trackInput").addEventListener("keydown",function(e){ if(e.key==="Enter") document.getElementById("trackBtn").click(); });
+
+  // textarea autogrow
+  var ta=document.getElementById("mMsg");
+  ta.addEventListener("input",function(){ ta.style.height="auto"; ta.style.height=ta.scrollHeight+"px"; });
+})();
+</script>
+</body>
+</html>
